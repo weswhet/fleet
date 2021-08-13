@@ -1148,7 +1148,7 @@ func TestSaveUsersConcurrent(t *testing.T) {
 			}
 		}()
 	}
-	total_hosts := 100000
+	total_hosts := 500
 	for i := 0; i < total_hosts; i++ {
 		newHostCh <- &fleet.Host{
 			DetailUpdatedAt: time.Now(),
@@ -1171,9 +1171,8 @@ func TestSaveUsersConcurrent(t *testing.T) {
 
 	hostCh := make(chan *fleet.Host)
 	go func() {
-		rounds := total_hosts // * 7
+		rounds := total_hosts * 3
 		for i := 0; i < rounds; i++ {
-			fmt.Print(".")
 			h, err := ds.Host(uint(rand.Intn(rounds)%total_hosts) + 1)
 			if err != nil {
 				fmt.Println("ERR", err)
