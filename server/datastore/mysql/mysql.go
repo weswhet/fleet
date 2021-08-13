@@ -213,7 +213,13 @@ func New(config config.MysqlConfig, c clock.Clock, opts ...DBOption) (*Datastore
 	}
 
 	var writeChs []chan HostWriteReq
-	for i := 0; i < 10; i++ {
+	// times for the current test
+	// 1 -> 55s
+	// 2 -> 41s
+	// 5 -> 43s
+	// 10 -> 37s
+	// 20 -> 41s
+	for i := 0; i < 20; i++ {
 		writeChs = append(writeChs, make(chan HostWriteReq))
 	}
 
