@@ -8,6 +8,7 @@ import (
 	"strconv"
 	"strings"
 	"sync"
+	"sync/atomic"
 	"testing"
 	"time"
 
@@ -1172,9 +1173,11 @@ func TestSaveUsersConcurrent(t *testing.T) {
 	go func() {
 		rounds := total_hosts // * 7
 		for i := 0; i < rounds; i++ {
-			h, err := ds.Host(uint(rand.Intn(rounds) % total_hosts))
+			fmt.Print(".")
+			h, err := ds.Host(uint(rand.Intn(rounds)%total_hosts) + 1)
 			if err != nil {
 				fmt.Println("ERR", err)
+				continue
 			}
 			u1 := fleet.HostUser{
 				Uid:       uint(i),
@@ -1195,7 +1198,10 @@ func TestSaveUsersConcurrent(t *testing.T) {
 			h.Modified = true
 			hostCh <- h
 		}
+		close(hostCh)
 	}()
+
+	count := uint32(0)
 
 	wg := sync.WaitGroup{}
 	for i := 0; i < 4; i++ {
@@ -1205,6 +1211,7 @@ func TestSaveUsersConcurrent(t *testing.T) {
 			for host := range hostCh {
 				err := ds.SaveHost(host)
 				require.Nil(t, err)
+				atomic.AddUint32(&count, 1)
 			}
 		}()
 	}
@@ -1212,5 +1219,5 @@ func TestSaveUsersConcurrent(t *testing.T) {
 	wg.Wait()
 
 	elapsed := time.Since(start)
-	fmt.Println(elapsed)
+	fmt.Println(elapsed, count)
 }
