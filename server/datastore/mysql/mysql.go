@@ -37,13 +37,19 @@ var (
 	columnCharsRegexp = regexp.MustCompile(`[^\w-]`)
 )
 
+type HostWriteReq struct {
+	Host  *fleet.Host
+	ErrCh chan error
+}
+
 // Datastore is an implementation of fleet.Datastore interface backed by
 // MySQL
 type Datastore struct {
-	db     *sqlx.DB
-	logger log.Logger
-	clock  clock.Clock
-	config config.MysqlConfig
+	db      *sqlx.DB
+	logger  log.Logger
+	clock   clock.Clock
+	config  config.MysqlConfig
+	writeCh []chan HostWriteReq
 }
 
 type txFn func(*sqlx.Tx) error
@@ -206,12 +212,20 @@ func New(config config.MysqlConfig, c clock.Clock, opts ...DBOption) (*Datastore
 		return nil, dbError
 	}
 
-	ds := &Datastore{
-		db:     db,
-		logger: options.logger,
-		clock:  c,
-		config: config,
+	var writeChs []chan HostWriteReq
+	for i := 0; i < 10; i++ {
+		writeChs = append(writeChs, make(chan HostWriteReq))
 	}
+
+	ds := &Datastore{
+		db:      db,
+		logger:  options.logger,
+		clock:   c,
+		config:  config,
+		writeCh: writeChs,
+	}
+
+	ds.writeLoops()
 
 	return ds, nil
 

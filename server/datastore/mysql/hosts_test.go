@@ -3,9 +3,11 @@ package mysql
 import (
 	"encoding/json"
 	"fmt"
+	"math/rand"
 	"sort"
 	"strconv"
 	"strings"
+	"sync"
 	"testing"
 	"time"
 
@@ -1126,4 +1128,89 @@ func TestSaveUsers(t *testing.T) {
 	require.Nil(t, err)
 	require.Len(t, host.Users, 1)
 	assert.Equal(t, host.Users[0].Uid, u2.Uid)
+}
+
+func TestSaveUsersConcurrent(t *testing.T) {
+	ds := CreateMySQLDS(t)
+	defer ds.Close()
+
+	newHostCh := make(chan *fleet.Host)
+	newHostWG := sync.WaitGroup{}
+	for i := 0; i < 20; i++ {
+		newHostWG.Add(1)
+		go func() {
+			defer newHostWG.Done()
+			for host := range newHostCh {
+				host, err := ds.NewHost(host)
+				require.NoError(t, err)
+				require.NotNil(t, host)
+			}
+		}()
+	}
+	total_hosts := 100000
+	for i := 0; i < total_hosts; i++ {
+		newHostCh <- &fleet.Host{
+			DetailUpdatedAt: time.Now(),
+			LabelUpdatedAt:  time.Now(),
+			SeenTime:        time.Now(),
+			NodeKey:         fmt.Sprint(i),
+			UUID:            fmt.Sprint(i),
+			OsqueryHostID:   fmt.Sprint(i),
+			Hostname:        fmt.Sprintf("foo.local%d", i),
+			PrimaryIP:       fmt.Sprintf("192.168.1.%d", i),
+			PrimaryMac:      fmt.Sprintf("30-65-EC-6F-C4-58-%d", i),
+		}
+	}
+	close(newHostCh)
+	newHostWG.Wait()
+
+	fmt.Println("Done inserting 100k hosts")
+
+	start := time.Now()
+
+	hostCh := make(chan *fleet.Host)
+	go func() {
+		rounds := total_hosts // * 7
+		for i := 0; i < rounds; i++ {
+			h, err := ds.Host(uint(rand.Intn(rounds) % total_hosts))
+			if err != nil {
+				fmt.Println("ERR", err)
+			}
+			u1 := fleet.HostUser{
+				Uid:       uint(i),
+				Username:  "user",
+				Type:      "aaa",
+				GroupName: "group",
+			}
+			u2 := fleet.HostUser{
+				Uid:       uint(i + 1),
+				Username:  "user2",
+				Type:      "aaa",
+				GroupName: "group",
+			}
+			h.Users = []fleet.HostUser{u1}
+			if i%2 == 0 {
+				h.Users = []fleet.HostUser{u1, u2}
+			}
+			h.Modified = true
+			hostCh <- h
+		}
+	}()
+
+	wg := sync.WaitGroup{}
+	for i := 0; i < 4; i++ {
+		wg.Add(1)
+		go func() {
+			defer wg.Done()
+			for host := range hostCh {
+				err := ds.SaveHost(host)
+				require.Nil(t, err)
+			}
+		}()
+	}
+
+	wg.Wait()
+
+	elapsed := time.Since(start)
+	fmt.Println(elapsed)
 }

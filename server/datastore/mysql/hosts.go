@@ -57,7 +57,28 @@ func (d *Datastore) NewHost(host *fleet.Host) (*fleet.Host, error) {
 	return host, nil
 }
 
+func (d *Datastore) writeLoops() {
+	for _, ch := range d.writeCh {
+		wch := ch
+		go func() {
+			for host := range wch {
+				host.ErrCh <- d.SaveHostActual(host.Host)
+			}
+		}()
+	}
+}
+
 func (d *Datastore) SaveHost(host *fleet.Host) error {
+	errch := make(chan error)
+	totalChs := len(d.writeCh)
+	d.writeCh[int(host.ID)%totalChs] <- HostWriteReq{
+		Host:  host,
+		ErrCh: errch,
+	}
+	return <-errch
+}
+
+func (d *Datastore) SaveHostActual(host *fleet.Host) error {
 	sqlStatement := `
 		UPDATE hosts SET
 			detail_updated_at = ?,
