@@ -14,7 +14,7 @@
 
 Install the dependencies as described in the next sections, then go to [Clone and build](#clone-and-build)
 
-#### macOS
+**macOS**
 
 Enable the macOS developer tools:
 
@@ -28,7 +28,7 @@ Install [Homebrew](https://brew.sh/) to manage dependencies, then:
 brew install git go node yarn
 ```
 
-#### Ubuntu
+**Ubuntu**
 
 Install dependencies:
 
@@ -37,7 +37,7 @@ sudo apt-get install -y git golang make nodejs npm
 sudo npm install -g yarn
 ```
 
-#### Windows
+**Windows**
 
 To install dependecies, we recommend using [Chocolatey](https://chocolatey.org/install). Chocolatey must be run in Powershell as an Administrator. Assuming your setup does not include any of our requirements, please run:
 ```
@@ -91,7 +91,7 @@ To generate all necessary code (bundling JavaScript into Go, etc), run the follo
 make generate
 ```
 
-#### Automatic rebuilding of the JavaScript bundle
+**Automatic rebuilding of the JavaScript bundle**
 
 Normally, `make generate` takes the JavaScript code, bundles it into a single bundle via Webpack, and inlines that bundle into a generated Go source file so that all of the frontend code can be statically compiled into the binary. When you build the code after running `make generate`, all of that JavaScript is included in the binary.
 
@@ -130,7 +130,7 @@ To set up a canonical development environment via Docker, run the following from
 docker-compose up
 ```
 
-##### Stopping the local development environment
+**Stopping the local development environment**
 
 If you'd like to shut down the virtual infrastructure created by Docker, run the following from the root of the repository:
 
@@ -138,7 +138,7 @@ If you'd like to shut down the virtual infrastructure created by Docker, run the
 docker-compose down
 ```
 
-##### Setting up the database tables
+**Setting up the database tables**
 
 Once you `docker-compose up` and are running the databases, you can build the code and run the following command to create the database tables:
 
