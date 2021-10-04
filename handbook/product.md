@@ -23,17 +23,20 @@ For issues related to something that was ALREADY in Figma Fleet EE (current, dev
 ## Fleet docs
 
 **Adding a link to Fleet docs**
+
 You can link documentation pages to each other using relative paths. For example, in `docs/1-Using-Fleet/1-Fleet-UI.md`, you can link to `docs/1-Using-Fleet/9-Permissions.md` by writing `[permissions](./9-Permissions.md)`. This will be automatically transformed into the appropriate URL for `fleetdm.com/docs`.
 
 However, the `fleetdm.com/docs` compilation process does not account for relative links to directories **outside** of `/docs`.
 Therefore, when adding a link to Fleet docs, it is important to always use the absolute file path.
 
 **Linking to a location on GitHub**
+
 When adding a link to a location on GitHub that is outside of `/docs`, be sure to use the canonical form of the URL.
 
 To do this, navigate to the file's location on GitHub, and press "y" to transform the URL into its canonical form.
 
 **How to fix a broken link**
+
 For instances in which a broken link is discovered on fleetdm.com, check if the link is a relative link to a directory outside of `/docs`. 
 
 An example of a link that lives outside of `/docs` is:
@@ -205,7 +208,7 @@ Check out the [Fleet 4.1.0 blog post](https://blog.fleetdm.com/fleet-4-1-0-57dfa
 
 **Upgrade plan** - Once sentence that links to user to the upgrading Fleet documentation here: https://github.com/fleetdm/fleet/blob/main/docs/01-Using-Fleet/08-Updating-Fleet.md
 
-**Manual QA**
+### Manual QA
 
 After all changes required for release have been merged into the `main` branch, the individual tasked with managing the release should perform a manual quality assurance pass. 
 
