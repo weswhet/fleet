@@ -104,7 +104,7 @@ cd repository && python -m http.server
 
 Run this to host the repository at http://localhost:8000.
 
-#### Update timestamp
+**Update timestamp**
 
 Orbit verifies freshness of the update metadata using the signed [timestamp file](https://theupdateframework.io/metadata/#timestamp-metadata-timestampjson). _This file must be re-signed every two weeks_ (this interval will be made configurable soon).
 

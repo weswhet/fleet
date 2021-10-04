@@ -58,7 +58,7 @@ sudo cp fleet/linux/fleet* /usr/bin/
 
 ### Installing and configuring dependencies
 
-#### MySQL
+**MySQL**
 
 To install the MySQL server files, run the following:
 
@@ -125,7 +125,7 @@ It's also worth creating a MySQL database for us to use at this point. Run the f
 echo 'CREATE DATABASE fleet;' | mysql -u root -p
 ```
 
-#### Redis
+**Redis**
 
 To install the Redis server files, run the following:
 
@@ -270,7 +270,7 @@ sudo cp fleet/linux/fleetctl /usr/bin/fleetctl
 
 ### Installing and configuring dependencies
 
-#### MySQL
+**MySQL**
 
 To install the MySQL server files, run the following:
 
@@ -293,7 +293,7 @@ It's also worth creating a MySQL database for us to use at this point. Run the f
 echo 'CREATE DATABASE fleet;' | mysql -u root -p
 ```
 
-#### Redis
+**Redis**
 
 To install the Redis server files, run the following:
 
@@ -424,7 +424,7 @@ For the sake of this tutorial, we will use Helm, the Kubernetes Package Manager,
 helm init
 ```
 
-#### MySQL
+**MySQL**
 
 The MySQL that we will use for this tutorial is not replicated and it is not Highly Available. If you're deploying Fleet on a Kubernetes managed by a cloud provider (GCP, Azure, AWS, etc), I suggest using their MySQL product if possible as running HA MySQL in Kubernetes can be difficult. To make this tutorial cloud provider agnostic however, we will use a non-replicated instance of MySQL.
 
@@ -448,7 +448,7 @@ fleet-database-mysql:3306
 
 We will use this address when we configure the Kubernetes deployment and database migration job, but if you're not using a Helm-installed MySQL in your deployment, you'll have to change this in your Kubernetes config files.
 
-##### Database Migrations
+**Database Migrations**
 
 The last step is to run the Fleet database migrations on your new MySQL server. To do this, run the following:
 
@@ -463,7 +463,7 @@ kubectl delete -f ./docs/01-Using-Fleet/configuration-files/kubernetes/fleet-mig
 kubectl create -f ./docs/01-Using-Fleet/configuration-files/kubernetes/fleet-migrations.yml
 ```
 
-#### Redis
+**Redis**
 
 ```
 helm install \
@@ -482,15 +482,15 @@ We will use this address when we configure the Kubernetes deployment, but if you
 
 ### Setting up and installing Fleet
 
-> #### A note on container versions
+> **A note on container versions**
 >
 > The Kubernetes files referenced by this tutorial use the Fleet container tagged at `1.0.5`. The tag is something that should be consistent across the migration job and the deployment specification. If you use these files, I suggest creating a workflow that allows you templatize the value of this tag. For further reading on this topic, see the [Kubernetes documentation](https://kubernetes.io/docs/concepts/configuration/overview/#container-images).
 
-#### Create server secrets
+**Create server secrets**
 
 It should be noted that by default Kubernetes stores secret data in plaintext in etcd. Using an alternative secret storage mechanism is outside the scope of this tutorial, but let this serve as a reminder to secure the storage of your secrets.
 
-##### TLS certificate & key
+**TLS certificate & key**
 
 Consider using Lets Encrypt to easily generate your TLS certificate. For examples on using `lego`, the command-line Let's Encrypt client, see the [documentation](https://github.com/xenolf/lego#cli-example). Consider the following example, which may be useful if you're a GCP user:
 
@@ -515,7 +515,7 @@ Now you'll have to give this CSR to a Certificate Authority, and they will give 
 kubectl create secret tls fleet-tls --key=./tls.key --cert=./tls.crt
 ```
 
-#### Deploying Fleet
+**Deploying Fleet**
 
 First we must deploy the instances of the Fleet webserver. The Fleet webserver is described using a Kubernetes deployment object. To create this deployment, run the following:
 
@@ -531,7 +531,7 @@ ts=2017-11-16T02:48:38.440578433Z component=service method=ListUsers user=none e
 ts=2017-11-16T02:48:38.441148166Z transport=https address=0.0.0.0:443 msg=listening
 ```
 
-#### Deploying the Load Balancer
+**Deploying the Load Balancer**
 
 Now that the Fleet server is running on our cluster, we have to expose the Fleet webservers to the internet via a load balancer. To create a Kubernetes `Service` of type `LoadBalancer`, run the following:
 
@@ -539,7 +539,7 @@ Now that the Fleet server is running on our cluster, we have to expose the Fleet
 kubectl apply -f ./docs/01-Using-Fleet/configuration-files/kubernetes/fleet-service.yml
 ```
 
-#### Configure DNS
+**Configure DNS**
 
 Finally, we must configure a DNS address for the external IP address that we now have for the Fleet load balancer. Run the following to show some high-level information about the service:
 
@@ -551,7 +551,7 @@ In this output, you should see an "EXTERNAL-IP" column. If this column says `<pe
 
 Once you have the public IP address for the load balancer, create an A record in your DNS server of choice. You should now be able to browse to your Fleet server from the internet!
 
-#### Community projects
+### Community projects
 
 Below are some projects created by Fleet community members. These projects provide additional solutions for deploying Fleet. Please submit a pull request if you'd like your project featured.
 

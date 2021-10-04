@@ -201,7 +201,7 @@ Given a working flagfile for connecting osquery agents to Fleet, add the followi
 
 The default flagfile provided in the "Add New Host" dialog also includes this configuration.
 
-#### Carver block size
+**Carver block size**
 
 The `carver_block_size` flag should be configured in osquery. 2MB (`2000000`) is a good starting value.
 
@@ -211,7 +211,7 @@ In case S3 is used as the storage backend, this value must be instead set to be 
 
 Using a smaller value for `carver_block_size` will lead to more HTTP requests during the carving process, resulting in longer carve times and higher load on the Fleet server. If the value is too high, HTTP requests may run long enough to cause server timeouts.
 
-#### Compression
+**Compression**
 
 Compression of the carve contents can be enabled with the `carver_compression` flag in osquery. When used, the carve results will be compressed with [Zstandard](https://facebook.github.io/zstd/) compression.
 
@@ -231,7 +231,7 @@ The standard osquery file globbing syntax is also supported to carve entire dire
 fleetctl query --hosts mac-workstation --query 'SELECT * FROM carves WHERE carve = 1 AND path LIKE "/etc/%%"'
 ```
 
-#### Retrieving carves
+**Retrieving carves**
 
 List the non-expired (see below) carves with `fleetctl get carves`. Note that carves will not be available through this command until osquery checks in to the Fleet server with the first of the carve contents. This can take some time from initiation of the carve.
 
@@ -251,7 +251,7 @@ It can also be useful to pipe the results directly into the tar command for unar
 fleetctl get carve --stdout 3 | tar -x
 ```
 
-#### Expiration
+**Expiration**
 
 Carve contents remain available for 24 hours after the first data is provided from the osquery client. After this time, the carve contents are cleaned from the database and the carve is marked as "expired".
 
@@ -259,7 +259,7 @@ The same is not true if S3 is used as the storage backend. In that scenario, it 
 
 ### Troubleshooting
 
-#### Check carve status in osquery
+**Check carve status in osquery**
 
 Osquery can report on the status of carves through queries to the `carves` table.
 
@@ -271,7 +271,7 @@ fleetctl query --labels 'All Hosts' --query 'SELECT * FROM carves'
 
 can be helpful to debug carving problems.
 
-#### Ensure carver_block_size is set appropriately
+**Ensure carver_block_size is set appropriately**
 
 This value must be less than the `max_allowed_packet` setting in MySQL. If it is too large, MySQL will reject the writes.
 

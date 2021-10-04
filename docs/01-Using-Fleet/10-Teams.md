@@ -1,11 +1,5 @@
 # Teams
 
-`Applies only to Fleet Premium`
-
-```
-ℹ️  In Fleet 4.0, Teams were introduced.
-```
-
 - [View teams](#view-teams)
 - [Create a team](#create-a-teams)
 - [Enroll hosts to a team](#enroll-hosts-to-a-team)
@@ -13,6 +7,12 @@
 - [Add users to a team](#add-users-to-a-team)
 - [Remove a member from a team](#remove-a-member-from-a-team)
 - [Remove a team](#remove-a-team)
+
+`Applies only to Fleet Premium`
+
+```
+ℹ️  In Fleet 4.0, Teams were introduced.
+```
 
 In Fleet, you can group hosts together in a team.
 

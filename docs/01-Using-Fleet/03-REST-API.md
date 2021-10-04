@@ -88,18 +88,18 @@ Authenticates the user with the specified credentials. Use the token returned fr
 
 > This API endpoint is not available to SSO users, since email/password login is disabled for SSO users. To get an API token for an SSO user, you can use the Fleet UI.
 
-#### Parameters
+**Parameters**
 
 | Name     | Type   | In   | Description                                   |
 | -------- | ------ | ---- | --------------------------------------------- |
 | email    | string | body | **Required**. The user's email.               |
 | password | string | body | **Required**. The user's plain text password. |
 
-#### Example
+**Example**
 
 `POST /api/v1/fleet/login`
 
-##### Request body
+**Request body**
 
 ```json
 {
@@ -108,7 +108,7 @@ Authenticates the user with the specified credentials. Use the token returned fr
 }
 ```
 
-##### Default response
+**Default response**
 
 `Status: 200`
 
@@ -139,11 +139,11 @@ Logs out the authenticated user.
 
 `POST /api/v1/fleet/logout`
 
-#### Example
+**Example**
 
 `POST /api/v1/fleet/logout`
 
-##### Default response
+**Default response**
 
 `Status: 200`
 
@@ -155,17 +155,17 @@ Sends a password reset email to the specified email. Requires that SMTP is confi
 
 `POST /api/v1/fleet/forgot_password`
 
-#### Parameters
+**Parameters**
 
 | Name  | Type   | In   | Description                                                             |
 | ----- | ------ | ---- | ----------------------------------------------------------------------- |
 | email | string | body | **Required**. The email of the user requesting the reset password link. |
 
-#### Example
+**Example**
 
 `POST /api/v1/fleet/forgot_password`
 
-##### Request body
+**Request body**
 
 ```json
 {
@@ -173,11 +173,11 @@ Sends a password reset email to the specified email. Requires that SMTP is confi
 }
 ```
 
-##### Default response
+**Default response**
 
 `Status: 200`
 
-##### Unknown error
+**Unknown error**
 
 `Status: 500`
 
@@ -201,18 +201,18 @@ Sends a password reset email to the specified email. Requires that SMTP is confi
 
 Changes the password for the authenticated user.
 
-#### Parameters
+**Parameters**
 
 | Name         | Type   | In   | Description                            |
 | ------------ | ------ | ---- | -------------------------------------- |
 | old_password | string | body | **Required**. The user's old password. |
 | new_password | string | body | **Required**. The user's new password. |
 
-#### Example
+**Example**
 
 `POST /api/v1/fleet/change_password`
 
-##### Request body
+**Request body**
 
 ```json
 {
@@ -221,11 +221,11 @@ Changes the password for the authenticated user.
 }
 ```
 
-##### Default response
+**Default response**
 
 `Status: 200`
 
-##### Validation failed
+**Validation failed**
 
 `Status: 422 Unprocessable entity`
 
@@ -247,7 +247,7 @@ Resets a user's password. Which user is determined by the password reset token u
 
 `POST /api/v1/fleet/reset_password`
 
-#### Parameters
+**Parameters**
 
 | Name                      | Type   | In   | Description                                                               |
 | ------------------------- | ------ | ---- | ------------------------------------------------------------------------- |
@@ -255,11 +255,11 @@ Resets a user's password. Which user is determined by the password reset token u
 | new_password_confirmation | string | body | **Required**. Confirmation for the new password.                          |
 | password_reset_token      | string | body | **Required**. The token provided to the user in the password reset email. |
 
-#### Example
+**Example**
 
 `POST /api/v1/fleet/reset_password`
 
-##### Request body
+**Request body**
 
 ```json
 {
@@ -269,7 +269,7 @@ Resets a user's password. Which user is determined by the password reset token u
 }
 ```
 
-##### Default response
+**Default response**
 
 `Status: 200`
 
@@ -282,11 +282,11 @@ Retrieves the user data for the authenticated user.
 
 `POST /api/v1/fleet/me`
 
-#### Example
+**Example**
 
 `POST /api/v1/fleet/me`
 
-##### Default response
+**Default response**
 
 `Status: 200`
 
@@ -316,11 +316,11 @@ Resets the password of the authenticated user. Requires that `force_password_res
 
 `POST /api/v1/fleet/perform_require_password_reset`
 
-#### Example
+**Example**
 
 `POST /api/v1/fleet/perform_required_password_reset`
 
-##### Request body
+**Request body**
 
 ```json
 {
@@ -328,7 +328,7 @@ Resets the password of the authenticated user. Requires that `force_password_res
 }
 ```
 
-##### Default response
+**Default response**
 
 `Status: 200`
 
@@ -358,11 +358,11 @@ Gets the current SSO configuration.
 
 `GET /api/v1/fleet/sso`
 
-#### Example
+**Example**
 
 `GET /api/v1/fleet/sso`
 
-##### Default response
+**Default response**
 
 `Status: 200`
 
@@ -382,17 +382,17 @@ Gets the current SSO configuration.
 
 `POST /api/v1/fleet/sso`
 
-#### Parameters
+**Parameters**
 
 | Name      | Type   | In   | Description                                                                 |
 | --------- | ------ | ---- | --------------------------------------------------------------------------- |
 | relay_url | string | body | **Required**. The relative url to be navigated to after successful sign in. |
 
-#### Example
+**Example**
 
 `POST /api/v1/fleet/sso`
 
-##### Request body
+**Request body**
 
 ```json
 {
@@ -400,11 +400,11 @@ Gets the current SSO configuration.
 }
 ```
 
-##### Default response
+**Default response**
 
 `Status: 200`
 
-##### Unknown error
+**Unknown error**
 
 `Status: 500`
 
@@ -426,17 +426,17 @@ This is the callback endpoint that the identity provider will use to send securi
 
 `POST /api/v1/fleet/sso/callback`
 
-#### Parameters
+**Parameters**
 
 | Name         | Type   | In   | Description                                                 |
 | ------------ | ------ | ---- | ----------------------------------------------------------- |
 | SAMLResponse | string | body | **Required**. The SAML response from the identity provider. |
 
-#### Example
+**Example**
 
 `POST /api/v1/fleet/sso/callback`
 
-##### Request body
+**Request body**
 
 ```json
 {
@@ -444,7 +444,7 @@ This is the callback endpoint that the identity provider will use to send securi
 }
 ```
 
-##### Default response
+**Default response**
 
 `Status: 200`
 
@@ -467,7 +467,7 @@ This is the callback endpoint that the identity provider will use to send securi
 
 `GET /api/v1/fleet/hosts`
 
-#### Parameters
+**Parameters**
 
 | Name                    | Type    | In    | Description                                                                                                                                                                                                                                                                                                                                 |
 | ----------------------- | ------- | ----- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -484,11 +484,11 @@ This is the callback endpoint that the identity provider will use to send securi
 
 If `additional_info_filters` is not specified, no `additional` information will be returned.
 
-#### Example
+**Example**
 
 `GET /api/v1/fleet/hosts?page=0&per_page=100&order_key=hostname&query=2ce`
 
-##### Request query parameters
+**Request query parameters**
 
 ```json
 {
@@ -498,7 +498,7 @@ If `additional_info_filters` is not specified, no `additional` information will 
 }
 ```
 
-##### Default response
+**Default response**
 
 `Status: 200`
 
@@ -554,15 +554,15 @@ Returns the count of all hosts organized by status. `online_count` includes all 
 
 `GET /api/v1/fleet/host_summary`
 
-#### Parameters
+**Parameters**
 
 None.
 
-#### Example
+**Example**
 
 `GET /api/v1/fleet/host_summary`
 
-##### Default response
+**Default response**
 
 `Status: 200`
 
@@ -583,17 +583,17 @@ The endpoint returns the host's installed `software` if the software inventory f
 
 `GET /api/v1/fleet/hosts/{id}`
 
-#### Parameters
+**Parameters**
 
 | Name | Type    | In   | Description                  |
 | ---- | ------- | ---- | ---------------------------- |
 | id   | integer | path | **Required**. The host's id. |
 
-#### Example
+**Example**
 
 `GET /api/v1/fleet/hosts/121`
 
-##### Default response
+**Default response**
 
 `Status: 200`
 
@@ -729,17 +729,17 @@ Returns the information of the host specified using the `uuid`, `osquery_host_id
 
 `GET /api/v1/fleet/hosts/identifier/{identifier}`
 
-#### Parameters
+**Parameters**
 
 | Name       | Type              | In   | Description                                                                   |
 | ---------- | ----------------- | ---- | ----------------------------------------------------------------------------- |
 | identifier | integer or string | path | **Required**. The host's `uuid`, `osquery_host_id`, `hostname`, or `node_key` |
 
-#### Example
+**Example**
 
 `GET /api/v1/fleet/hosts/identifier/392547dc-0000-0000-a87a-d701ff75bc65`
 
-##### Default response
+**Default response**
 
 `Status: 200`
 
@@ -795,17 +795,17 @@ Deletes the specified host from Fleet. Note that a deleted host will fail authen
 
 `DELETE /api/v1/fleet/hosts/{id}`
 
-#### Parameters
+**Parameters**
 
 | Name | Type    | In   | Description                  |
 | ---- | ------- | ---- | ---------------------------- |
 | id   | integer | path | **Required**. The host's id. |
 
-#### Example
+**Example**
 
 `DELETE /api/v1/fleet/hosts/121`
 
-##### Default response
+**Default response**
 
 `Status: 200`
 
@@ -816,17 +816,17 @@ Flags the host details to be refetched the next time the host checks in for live
 
 `POST /api/v1/fleet/hosts/{id}/refetch`
 
-#### Parameters
+**Parameters**
 
 | Name | Type    | In   | Description                  |
 | ---- | ------- | ---- | ---------------------------- |
 | id   | integer | path | **Required**. The host's id. |
 
-#### Example
+**Example**
 
 `POST /api/v1/fleet/hosts/121/refetch`
 
-##### Default response
+**Default response**
 
 `Status: 200`
 
@@ -837,18 +837,18 @@ _Available in Fleet Premium_
 
 `POST /api/v1/fleet/hosts/transfer`
 
-#### Parameters
+**Parameters**
 
 | Name    | Type    | In   | Description                                                             |
 | ------- | ------- | ---- | ----------------------------------------------------------------------- |
 | team_id | integer | body | **Required**. The ID of the team you'd like to transfer the host(s) to. |
 | hosts   | array   | body | **Required**. A list of host IDs.                                       |
 
-#### Example
+**Example**
 
 `POST /api/v1/fleet/hosts/transfer`
 
-##### Request body
+**Request body**
 
 ```json
 {
@@ -857,7 +857,7 @@ _Available in Fleet Premium_
 }
 ```
 
-##### Default response
+**Default response**
 
 `Status: 200`
 
@@ -868,18 +868,18 @@ _Available in Fleet Premium_
 
 `POST /api/v1/fleet/hosts/transfer/filter`
 
-#### Parameters
+**Parameters**
 
 | Name    | Type    | In   | Description                                                                                                                                                                                                                                                                                                                        |
 | ------- | ------- | ---- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | team_id | integer | body | **Required**. The ID of the team you'd like to transfer the host(s) to.                                                                                                                                                                                                                                                            |
 | filters | object  | body | **Required** Contains any of the following three properties: `query` for search query keywords. Searchable fields include `hostname`, `machine_serial`, `uuid`, and `ipv4`. `status` to indicate the status of the hosts to return. Can either be `new`, `online`, `offline`, or `mia`. `label_id` to indicate the selected label. |
 
-#### Example
+**Example**
 
 `POST /api/v1/fleet/hosts/transfer/filter`
 
-##### Request body
+**Request body**
 
 ```json
 {
@@ -890,7 +890,7 @@ _Available in Fleet Premium_
 }
 ```
 
-##### Default response
+**Default response**
 
 `Status: 200`
 
@@ -898,7 +898,7 @@ _Available in Fleet Premium_
 
 `POST /api/v1/fleet/hosts/delete`
 
-#### Parameters
+**Parameters**
 
 | Name    | Type    | In   | Description                                                                                                                                                                                                                                                                                                                        |
 | ------- | ------- | ---- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -927,11 +927,11 @@ Request (`filters` is specified):
 }
 ```
 
-#### Example
+**Example**
 
 `POST /api/v1/fleet/hosts/delete`
 
-##### Request body
+**Request body**
 
 ```json
 {
@@ -942,7 +942,7 @@ Request (`filters` is specified):
 }
 ```
 
-##### Default response
+**Default response**
 
 `Status: 200`
 
@@ -967,7 +967,7 @@ Creates a dynamic label.
 
 `POST /api/v1/fleet/labels`
 
-#### Parameters
+**Parameters**
 
 | Name        | Type   | In   | Description                                                                                                                                                                                                                                  |
 | ----------- | ------ | ---- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -976,11 +976,11 @@ Creates a dynamic label.
 | query       | string | body | **Required**. The query in SQL syntax used to filter the hosts.                                                                                                                                                                              |
 | platform    | string | body | The specific platform for the label to target. Provides an additional filter. Choices for platform are `darwin`, `windows`, `ubuntu`, and `centos`. All platforms are included by default and this option is represented by an empty string. |
 
-#### Example
+**Example**
 
 `POST /api/v1/fleet/labels`
 
-##### Request body
+**Request body**
 
 ```json
 {
@@ -991,7 +991,7 @@ Creates a dynamic label.
 }
 ```
 
-##### Default response
+**Default response**
 
 `Status: 200`
 
@@ -1019,7 +1019,7 @@ Modifies the specified label. Note: Label queries and platforms are immutable. T
 
 `PATCH /api/v1/fleet/labels/{id}`
 
-#### Parameters
+**Parameters**
 
 | Name        | Type    | In   | Description                   |
 | ----------- | ------- | ---- | ----------------------------- |
@@ -1027,11 +1027,11 @@ Modifies the specified label. Note: Label queries and platforms are immutable. T
 | name        | string  | body | The label's name.             |
 | description | string  | body | The label's description.      |
 
-#### Example
+**Example**
 
 `PATCH /api/v1/fleet/labels/1`
 
-##### Request body
+**Request body**
 
 ```json
 {
@@ -1041,7 +1041,7 @@ Modifies the specified label. Note: Label queries and platforms are immutable. T
 }
 ```
 
-##### Default response
+**Default response**
 
 `Status: 200`
 
@@ -1070,17 +1070,17 @@ Returns the specified label.
 
 `GET /api/v1/fleet/labels/{id}`
 
-#### Parameters
+**Parameters**
 
 | Name | Type    | In   | Description                   |
 | ---- | ------- | ---- | ----------------------------- |
 | id   | integer | path | **Required**. The label's id. |
 
-#### Example
+**Example**
 
 `GET /api/v1/fleet/labels/1`
 
-##### Default response
+**Default response**
 
 `Status: 200`
 
@@ -1108,7 +1108,7 @@ Returns a list of all the labels in Fleet.
 
 `GET /api/v1/fleet/labels`
 
-#### Parameters
+**Parameters**
 
 | Name            | Type    | In    | Description                                                                                                                   |
 | --------------- | ------- | ----- | ----------------------------------------------------------------------------------------------------------------------------- |
@@ -1116,11 +1116,11 @@ Returns a list of all the labels in Fleet.
 | order_key       | string  | query | What to order results by. Can be any column in the labels table.                                                              |
 | order_direction | string  | query | **Requires `order_key`**. The direction of the order given the order key. Options include `asc` and `desc`. Default is `asc`. |
 
-#### Example
+**Example**
 
 `GET /api/v1/fleet/labels`
 
-##### Default response
+**Default response**
 
 `Status: 200`
 
@@ -1209,7 +1209,7 @@ Returns a list of the hosts that belong to the specified label.
 
 `GET /api/v1/fleet/labels/{id}/hosts`
 
-#### Parameters
+**Parameters**
 
 | Name            | Type    | In    | Description                                                                                                                   |
 | --------------- | ------- | ----- | ----------------------------------------------------------------------------------------------------------------------------- |
@@ -1220,11 +1220,11 @@ Returns a list of the hosts that belong to the specified label.
 | query           | string  | query | Search query keywords. Searchable fields include `hostname`, `machine_serial`, `uuid`, and `ipv4`.                            |
 | team_id         | integer | query | _Available in Fleet Premium_ Filters the users to only include users in the specified team.                                   |
 
-#### Example
+**Example**
 
 `GET /api/v1/fleet/labels/6/hosts&query=floobar`
 
-##### Default response
+**Default response**
 
 `Status: 200`
 
@@ -1281,17 +1281,17 @@ Deletes the label specified by name.
 
 `DELETE /api/v1/fleet/labels/{name}`
 
-#### Parameters
+**Parameters**
 
 | Name | Type   | In   | Description                     |
 | ---- | ------ | ---- | ------------------------------- |
 | name | string | path | **Required**. The label's name. |
 
-#### Example
+**Example**
 
 `DELETE /api/v1/fleet/labels/ubuntu_label`
 
-##### Default response
+**Default response**
 
 `Status: 200`
 
@@ -1302,17 +1302,17 @@ Deletes the label specified by ID.
 
 `DELETE /api/v1/fleet/labels/id/{id}`
 
-#### Parameters
+**Parameters**
 
 | Name | Type    | In   | Description                   |
 | ---- | ------- | ---- | ----------------------------- |
 | id   | integer | path | **Required**. The label's id. |
 
-#### Example
+**Example**
 
 `DELETE /api/v1/fleet/labels/id/13`
 
-##### Default response
+**Default response**
 
 `Status: 200`
 
@@ -1327,17 +1327,17 @@ If the `label_membership_type` is set to `manual`, the `hosts` property must als
 
 `POST /api/v1/fleet/spec/labels`
 
-#### Parameters
+**Parameters**
 
 | Name  | Type | In   | Description                                                                                                   |
 | ----- | ---- | ---- | ------------------------------------------------------------------------------------------------------------- |
 | specs | list | path | A list of the label to apply. Each label requires the `name`, `query`, and `label_membership_type` properties |
 
-#### Example
+**Example**
 
 `POST /api/v1/fleet/spec/labels`
 
-##### Request body
+**Request body**
 
 ```json
 {
@@ -1360,7 +1360,7 @@ If the `label_membership_type` is set to `manual`, the `hosts` property must als
 }
 ```
 
-##### Default response
+**Default response**
 
 `Status: 200`
 
@@ -1369,15 +1369,15 @@ If the `label_membership_type` is set to `manual`, the `hosts` property must als
 
 `GET /api/v1/fleet/spec/labels`
 
-#### Parameters
+**Parameters**
 
 None.
 
-#### Example
+**Example**
 
 `GET /api/v1/fleet/spec/labels`
 
-##### Default response
+**Default response**
 
 `Status: 200`
 
@@ -1444,15 +1444,15 @@ Returns the spec for the label specified by name.
 
 `GET /api/v1/fleet/spec/labels/{name}`
 
-#### Parameters
+**Parameters**
 
 None.
 
-#### Example
+**Example**
 
 `GET /api/v1/fleet/spec/labels/local_machine`
 
-##### Default response
+**Default response**
 
 `Status: 200`
 
@@ -1491,7 +1491,7 @@ Returns a list of all enabled users
 
 `GET /api/v1/fleet/users`
 
-#### Parameters
+**Parameters**
 
 | Name            | Type    | In    | Description                                                                                                                   |
 | --------------- | ------- | ----- | ----------------------------------------------------------------------------------------------------------------------------- |
@@ -1503,15 +1503,15 @@ Returns a list of all enabled users
 | per_page        | integer | query | Results per page.                                                                                                             |
 | team_id         | string  | query | _Available in Fleet Premium_ Filters the users to only include users in the specified team.                                   |
 
-#### Example
+**Example**
 
 `GET /api/v1/fleet/users`
 
-##### Request query parameters
+**Request query parameters**
 
 None.
 
-##### Default response
+**Default response**
 
 `Status: 200`
 
@@ -1543,7 +1543,7 @@ None.
 }
 ```
 
-##### Failed authentication
+**Failed authentication**
 
 `Status: 401 Authentication Failed`
 
@@ -1565,7 +1565,7 @@ Creates a user account after an invited user provides registration information a
 
 `POST /api/v1/fleet/users`
 
-#### Parameters
+**Parameters**
 
 | Name                  | Type   | In   | Description                                                                                                                                                                                                                                                                                                                                              |
 | --------------------- | ------ | ---- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -1577,11 +1577,11 @@ Creates a user account after an invited user provides registration information a
 | global_role           | string | body | The role assigned to the user. In Fleet 4.0.0, 3 user roles were introduced (`admin`, `maintainer`, and `observer`). If `global_role` is specified, `teams` cannot be specified.                                                                                                                                                                         |
 | teams                 | array  | body | _Available in Fleet Premium_ The teams and respective roles assigned to the user. Should contain an array of objects in which each object includes the team's `id` and the user's `role` on each team. In Fleet 4.0.0, 3 user roles were introduced (`admin`, `maintainer`, and `observer`). If `teams` is specified, `global_role` cannot be specified. |
 
-#### Example
+**Example**
 
 `POST /api/v1/fleet/users`
 
-##### Request query parameters
+**Request query parameters**
 
 ```json
 {
@@ -1603,7 +1603,7 @@ Creates a user account after an invited user provides registration information a
 }
 ```
 
-##### Default response
+**Default response**
 
 `Status: 200`
 
@@ -1625,7 +1625,7 @@ Creates a user account after an invited user provides registration information a
 }
 ```
 
-##### Failed authentication
+**Failed authentication**
 
 `Status: 401 Authentication Failed`
 
@@ -1641,7 +1641,7 @@ Creates a user account after an invited user provides registration information a
 }
 ```
 
-##### Expired or used invite code
+**Expired or used invite code**
 
 `Status: 404 Resource Not Found`
 
@@ -1657,7 +1657,7 @@ Creates a user account after an invited user provides registration information a
 }
 ```
 
-##### Validation failed
+**Validation failed**
 
 `Status: 422 Validation Failed`
 
@@ -1681,7 +1681,7 @@ Creates a user account without requiring an invitation, the user is enabled imme
 
 `POST /api/v1/fleet/users/admin`
 
-#### Parameters
+**Parameters**
 
 | Name        | Type    | In   | Description                                                                                                                                                                                                                                                                                                                                              |
 | ----------- | ------- | ---- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -1693,11 +1693,11 @@ Creates a user account without requiring an invitation, the user is enabled imme
 | global_role | string  | body | The role assigned to the user. In Fleet 4.0.0, 3 user roles were introduced (`admin`, `maintainer`, and `observer`). If `global_role` is specified, `teams` cannot be specified.                                                                                                                                                                         |
 | teams       | array   | body | _Available in Fleet Premium_ The teams and respective roles assigned to the user. Should contain an array of objects in which each object includes the team's `id` and the user's `role` on each team. In Fleet 4.0.0, 3 user roles were introduced (`admin`, `maintainer`, and `observer`). If `teams` is specified, `global_role` cannot be specified. |
 
-#### Example
+**Example**
 
 `POST /api/v1/fleet/users/admin`
 
-##### Request body
+**Request body**
 
 ```json
 {
@@ -1717,7 +1717,7 @@ Creates a user account without requiring an invitation, the user is enabled imme
 }
 ```
 
-##### Default response
+**Default response**
 
 `Status: 200`
 
@@ -1749,7 +1749,7 @@ Creates a user account without requiring an invitation, the user is enabled imme
 }
 ```
 
-##### User doesn't exist
+**User doesn't exist**
 
 `Status: 404 Resource Not Found`
 
@@ -1771,17 +1771,17 @@ Returns all information about a specific user.
 
 `GET /api/v1/fleet/users/{id}`
 
-#### Parameters
+**Parameters**
 
 | Name | Type    | In   | Description                  |
 | ---- | ------- | ---- | ---------------------------- |
 | id   | integer | path | **Required**. The user's id. |
 
-#### Example
+**Example**
 
 `GET /api/v1/fleet/users/2`
 
-##### Request query parameters
+**Request query parameters**
 
 ```json
 {
@@ -1789,7 +1789,7 @@ Returns all information about a specific user.
 }
 ```
 
-##### Default response
+**Default response**
 
 `Status: 200`
 
@@ -1811,7 +1811,7 @@ Returns all information about a specific user.
 }
 ```
 
-##### User doesn't exist
+**User doesn't exist**
 
 `Status: 404 Resource Not Found`
 
@@ -1831,7 +1831,7 @@ Returns all information about a specific user.
 
 `PATCH /api/v1/fleet/users/{id}`
 
-#### Parameters
+**Parameters**
 
 | Name        | Type    | In   | Description                                                                                                                                                                                                                                                                                                                                              |
 | ----------- | ------- | ---- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -1844,11 +1844,11 @@ Returns all information about a specific user.
 | global_role | string  | body | The role assigned to the user. In Fleet 4.0.0, 3 user roles were introduced (`admin`, `maintainer`, and `observer`). If `global_role` is specified, `teams` cannot be specified.                                                                                                                                                                         |
 | teams       | array   | body | _Available in Fleet Premium_ The teams and respective roles assigned to the user. Should contain an array of objects in which each object includes the team's `id` and the user's `role` on each team. In Fleet 4.0.0, 3 user roles were introduced (`admin`, `maintainer`, and `observer`). If `teams` is specified, `global_role` cannot be specified. |
 
-#### Example
+**Example**
 
 `PATCH /api/v1/fleet/users/2`
 
-##### Request body
+**Request body**
 
 ```json
 {
@@ -1857,7 +1857,7 @@ Returns all information about a specific user.
 }
 ```
 
-##### Default response
+**Default response**
 
 `Status: 200`
 
@@ -1879,11 +1879,11 @@ Returns all information about a specific user.
 }
 ```
 
-#### Example (modify a user's teams)
+**Example (modify a user's teams)**
 
 `PATCH /api/v1/fleet/users/2`
 
-##### Request body
+**Request body**
 
 ```json
 {
@@ -1900,7 +1900,7 @@ Returns all information about a specific user.
 }
 ```
 
-##### Default response
+**Default response**
 
 `Status: 200`
 
@@ -1937,17 +1937,17 @@ Delete the specified user from Fleet.
 
 `DELETE /api/v1/fleet/users/{id}`
 
-#### Parameters
+**Parameters**
 
 | Name | Type    | In   | Description                  |
 | ---- | ------- | ---- | ---------------------------- |
 | id   | integer | path | **Required**. The user's id. |
 
-#### Example
+**Example**
 
 `DELETE /api/v1/fleet/users/3`
 
-##### Default response
+**Default response**
 
 `Status: 200`
 
@@ -1958,18 +1958,18 @@ The selected user is logged out of Fleet and required to reset their password du
 
 `POST /api/v1/fleet/users/{id}/require_password_reset`
 
-#### Parameters
+**Parameters**
 
 | Name  | Type    | In   | Description                                                                                    |
 | ----- | ------- | ---- | ---------------------------------------------------------------------------------------------- |
 | id    | integer | path | **Required**. The user's id.                                                                   |
 | reset | boolean | body | Whether or not the user is required to reset their password during the next attempt to log in. |
 
-#### Example
+**Example**
 
 `POST /api/v1/fleet/users/{id}/require_password_reset`
 
-##### Request body
+**Request body**
 
 ```json
 {
@@ -1977,7 +1977,7 @@ The selected user is logged out of Fleet and required to reset their password du
 }
 ```
 
-##### Default response
+**Default response**
 
 `Status: 200`
 
@@ -2004,15 +2004,15 @@ Returns a list of the user's sessions in Fleet.
 
 `GET /api/v1/fleet/users/{id}/sessions`
 
-#### Parameters
+**Parameters**
 
 None.
 
-#### Example
+**Example**
 
 `GET /api/v1/fleet/users/1/sessions`
 
-##### Default response
+**Default response**
 
 `Status: 200`
 
@@ -2044,17 +2044,17 @@ Deletes the selected user's sessions in Fleet. Also deletes the user's API token
 
 `DELETE /api/v1/fleet/users/{id}/sessions`
 
-#### Parameters
+**Parameters**
 
 | Name | Type    | In   | Description                               |
 | ---- | ------- | ---- | ----------------------------------------- |
 | id   | integer | path | **Required**. The ID of the desired user. |
 
-#### Example
+**Example**
 
 `DELETE /api/v1/fleet/users/1/sessions`
 
-##### Default response
+**Default response**
 
 `Status: 200`
 
@@ -2072,17 +2072,17 @@ Returns the session information for the session specified by ID.
 
 `GET /api/v1/fleet/sessions/{id}`
 
-#### Parameters
+**Parameters**
 
 | Name | Type    | In   | Description                                  |
 | ---- | ------- | ---- | -------------------------------------------- |
 | id   | integer | path | **Required**. The ID of the desired session. |
 
-#### Example
+**Example**
 
 `GET /api/v1/fleet/sessions/1`
 
-##### Default response
+**Default response**
 
 `Status: 200`
 
@@ -2100,17 +2100,17 @@ Deletes the session specified by ID. When the user associated with the session n
 
 `DELETE /api/v1/fleet/sessions/{id}`
 
-#### Parameters
+**Parameters**
 
 | Name | Type    | In   | Description                                  |
 | ---- | ------- | ---- | -------------------------------------------- |
 | id   | integer | path | **Required**. The id of the desired session. |
 
-#### Example
+**Example**
 
 `DELETE /api/v1/fleet/sessions/1`
 
-##### Default response
+**Default response**
 
 `Status: 200`
 
@@ -2142,17 +2142,17 @@ Returns the query specified by ID.
 
 `GET /api/v1/fleet/queries/{id}`
 
-#### Parameters
+**Parameters**
 
 | Name | Type    | In   | Description                                |
 | ---- | ------- | ---- | ------------------------------------------ |
 | id   | integer | path | **Required**. The id of the desired query. |
 
-#### Example
+**Example**
 
 `GET /api/v1/fleet/queries/31`
 
-##### Default response
+**Default response**
 
 `Status: 200`
 
@@ -2190,18 +2190,18 @@ Returns a list of all queries in the Fleet instance.
 
 `GET /api/v1/fleet/queries`
 
-#### Parameters
+**Parameters**
 
 | Name            | Type   | In    | Description                                                                                                                   |
 | --------------- | ------ | ----- | ----------------------------------------------------------------------------------------------------------------------------- |
 | order_key       | string | query | What to order results by. Can be any column in the queries table.                                                             |
 | order_direction | string | query | **Requires `order_key`**. The direction of the order given the order key. Options include `asc` and `desc`. Default is `asc`. |
 
-#### Example
+**Example**
 
 `GET /api/v1/fleet/queries`
 
-##### Default response
+**Default response**
 
 `Status: 200`
 
@@ -2261,7 +2261,7 @@ Returns a list of all queries in the Fleet instance.
 
 `POST /api/v1/fleet/queries`
 
-#### Parameters
+**Parameters**
 
 | Name             | Type   | In   | Description                                                                                                                                            |
 | ---------------- | ------ | ---- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
@@ -2270,11 +2270,11 @@ Returns a list of all queries in the Fleet instance.
 | description      | string | body | The query's description.                                                                                                                               |
 | observer_can_run | bool   | body | Whether or not users with the `observer` role can run the query. In Fleet 4.0.0, 3 user roles were introduced (`admin`, `maintainer`, and `observer`). |
 
-#### Example
+**Example**
 
 `POST /api/v1/fleet/queries`
 
-##### Request body
+**Request body**
 
 ```json
 {
@@ -2284,7 +2284,7 @@ Returns a list of all queries in the Fleet instance.
 }
 ```
 
-##### Default response
+**Default response**
 
 `Status: 200`
 
@@ -2312,7 +2312,7 @@ Returns the query specified by ID.
 
 `PATCH /api/v1/fleet/queries/{id}`
 
-#### Parameters
+**Parameters**
 
 | Name             | Type    | In   | Description                                                                                                                                            |
 | ---------------- | ------- | ---- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
@@ -2322,11 +2322,11 @@ Returns the query specified by ID.
 | description      | string  | body | The query's description.                                                                                                                               |
 | observer_can_run | bool    | body | Whether or not users with the `observer` role can run the query. In Fleet 4.0.0, 3 user roles were introduced (`admin`, `maintainer`, and `observer`). |
 
-#### Example
+**Example**
 
 `PATCH /api/v1/fleet/queries/2`
 
-##### Request body
+**Request body**
 
 ```json
 {
@@ -2334,7 +2334,7 @@ Returns the query specified by ID.
 }
 ```
 
-##### Default response
+**Default response**
 
 `Status: 200`
 
@@ -2362,17 +2362,17 @@ Deletes the query specified by name.
 
 `DELETE /api/v1/fleet/queries/{name}`
 
-#### Parameters
+**Parameters**
 
 | Name | Type   | In   | Description                          |
 | ---- | ------ | ---- | ------------------------------------ |
 | name | string | path | **Required.** The name of the query. |
 
-#### Example
+**Example**
 
 `DELETE /api/v1/fleet/queries/{name}`
 
-##### Default response
+**Default response**
 
 `Status: 200`
 
@@ -2383,17 +2383,17 @@ Deletes the query specified by ID.
 
 `DELETE /api/v1/fleet/queries/id/{id}`
 
-#### Parameters
+**Parameters**
 
 | Name | Type    | In   | Description                        |
 | ---- | ------- | ---- | ---------------------------------- |
 | id   | integer | path | **Required.** The ID of the query. |
 
-#### Example
+**Example**
 
 `DELETE /api/v1/fleet/queries/id/28`
 
-##### Default response
+**Default response**
 
 `Status: 200`
 
@@ -2404,17 +2404,17 @@ Deletes the queries specified by ID. Returns the count of queries successfully d
 
 `POST /api/v1/fleet/queries/delete`
 
-#### Parameters
+**Parameters**
 
 | Name | Type | In   | Description                           |
 | ---- | ---- | ---- | ------------------------------------- |
 | ids  | list | body | **Required.** The IDs of the queries. |
 
-#### Example
+**Example**
 
 `POST /api/v1/fleet/queries/delete`
 
-##### Request body
+**Request body**
 
 ```json
 {
@@ -2424,7 +2424,7 @@ Deletes the queries specified by ID. Returns the count of queries successfully d
 }
 ```
 
-##### Default response
+**Default response**
 
 `Status: 200`
 
@@ -2440,15 +2440,15 @@ Returns a list of all queries in the Fleet instance. Each item returned includes
 
 `GET /api/v1/fleet/spec/queries`
 
-#### Parameters
+**Parameters**
 
 None.
 
-#### Example
+**Example**
 
 `GET /api/v1/fleet/spec/queries`
 
-##### Default response
+**Default response**
 
 `Status: 200`
 
@@ -2475,17 +2475,17 @@ Returns the name, description, and SQL of the query specified by name.
 
 `GET /api/v1/fleet/spec/queries/{name}`
 
-#### Parameters
+**Parameters**
 
 | Name | Type   | In   | Description                          |
 | ---- | ------ | ---- | ------------------------------------ |
 | name | string | path | **Required.** The name of the query. |
 
-#### Example
+**Example**
 
 `GET /api/v1/fleet/spec/queries/query1`
 
-##### Default response
+**Default response**
 
 `Status: 200`
 
@@ -2505,17 +2505,17 @@ Creates and/or modifies the queries included in the specs list. To modify an exi
 
 `POST /api/v1/fleet/spec/queries`
 
-#### Parameters
+**Parameters**
 
 | Name  | Type | In   | Description                                                      |
 | ----- | ---- | ---- | ---------------------------------------------------------------- |
 | specs | list | body | **Required.** The list of the queries to be created or modified. |
 
-#### Example
+**Example**
 
 `POST /api/v1/fleet/spec/queries`
 
-##### Request body
+**Request body**
 
 ```json
 {
@@ -2534,7 +2534,7 @@ Creates and/or modifies the queries included in the specs list. To modify an exi
 }
 ```
 
-##### Default response
+**Default response**
 
 `Status: 200`
 
@@ -2545,15 +2545,15 @@ Checks the status of the Fleet's ability to run a live query. If an error is pre
 
 `GET /api/v1/fleet/status/live_query`
 
-#### Parameters
+**Parameters**
 
 None.
 
-#### Example
+**Example**
 
 `GET /api/v1/fleet/status/live_query`
 
-##### Default response
+**Default response**
 
 `Status: 200`
 
@@ -2564,15 +2564,15 @@ Checks the status of the Fleet's result store. If an error is present in the res
 
 `GET /api/v1/fleet/status/result_store`
 
-#### Parameters
+**Parameters**
 
 None.
 
-#### Example
+**Example**
 
 `GET /api/v1/fleet/status/result_store`
 
-##### Default response
+**Default response**
 
 `Status: 200`
 
@@ -2585,7 +2585,7 @@ After the query has been initiated, [get results via WebSocket](#retrieve-live-q
 
 `POST /api/v1/fleet/queries/run`
 
-#### Parameters
+**Parameters**
 
 | Name     | Type    | In   | Description                                                                                                                                                |
 | -------- | ------- | ---- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -2595,11 +2595,11 @@ After the query has been initiated, [get results via WebSocket](#retrieve-live-q
 
 One of `query` and `query_id` must be specified.
 
-#### Example with one host targeted by ID
+**Example with one host targeted by ID**
 
 `POST /api/v1/fleet/queries/run`
 
-##### Request body
+**Request body**
 
 ```json
 {
@@ -2610,7 +2610,7 @@ One of `query` and `query_id` must be specified.
 }
 ```
 
-##### Default response
+**Default response**
 
 `Status: 200`
 
@@ -2634,11 +2634,11 @@ One of `query` and `query_id` must be specified.
 }
 ```
 
-#### Example with multiple hosts targeted by label ID
+**Example with multiple hosts targeted by label ID**
 
 `POST /api/v1/fleet/queries/run`
 
-##### Request body
+**Request body**
 
 ```json
 {
@@ -2649,7 +2649,7 @@ One of `query` and `query_id` must be specified.
 }
 ```
 
-##### Default response
+**Default response**
 
 `Status: 200`
 
@@ -2681,7 +2681,7 @@ After the query has been initiated, [get results via WebSocket](#retrieve-live-q
 
 `POST /api/v1/fleet/queries/run_by_names`
 
-#### Parameters
+**Parameters**
 
 | Name     | Type    | In   | Description                                                                                                                                                  |
 | -------- | ------- | ---- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
@@ -2691,11 +2691,11 @@ After the query has been initiated, [get results via WebSocket](#retrieve-live-q
 
 One of `query` and `query_id` must be specified.
 
-#### Example with one host targeted by hostname
+**Example with one host targeted by hostname**
 
 `POST /api/v1/fleet/queries/run_by_names`
 
-##### Request body
+**Request body**
 
 ```json
 {
@@ -2708,7 +2708,7 @@ One of `query` and `query_id` must be specified.
 }
 ```
 
-##### Default response
+**Default response**
 
 `Status: 200`
 
@@ -2732,11 +2732,11 @@ One of `query` and `query_id` must be specified.
 }
 ```
 
-#### Example with multiple hosts targeted by label name
+**Example with multiple hosts targeted by label name**
 
 `POST /api/v1/fleet/queries/run_by_names`
 
-##### Request body
+**Request body**
 
 ```json
 {
@@ -2749,7 +2749,7 @@ One of `query` and `query_id` must be specified.
 }
 ```
 
-##### Default response
+**Default response**
 
 `Status: 200`
 
@@ -2783,16 +2783,16 @@ Note that live queries are automatically cancelled if this method is not called 
 
 `/api/v1/fleet/results/websockets`
 
-#### Parameters
+**Parameters**
 
 | Name       | Type    | In  | Description                                                      |
 | ---------- | ------- | --- | ---------------------------------------------------------------- |
 | token      | string  |     | **Required.** The token used to authenticate with the Fleet API. |
 | campaignID | integer |     | **Required.** The ID of the live query campaign.                 |
 
-#### Example
+**Example**
 
-##### Example script to handle request and response
+**Example script to handle request and response**
 
 ```
 const socket = new WebSocket('wss://<your-base-url>/api/v1/fleet/results/websocket');
@@ -2811,19 +2811,19 @@ socket.onmessage = ({ data }) => {
 }
 ```
 
-##### Detailed request and response walkthrough with example data
+**Detailed request and response walkthrough with example data**
 
-##### webSocket.onopen()
+### webSocket.onopen()
 
-###### Response data
+**Response data**
 
 ```json
 o
 ```
 
-##### webSocket.send()
+### webSocket.send()
 
-###### Request data
+**Request data**
 
 ```json
 [
@@ -2843,9 +2843,9 @@ o
 ]
 ```
 
-##### webSocket.onmessage()
+### webSocket.onmessage()
 
-###### Response data
+**Response data**
 
 ```json
 // Sends the total number of hosts targeted and segments them by status
@@ -2924,16 +2924,16 @@ Note that SockJS has been found to be substantially less reliable than the [stan
 
 `/api/v1/fleet/results/`
 
-#### Parameters
+**Parameters**
 
 | Name       | Type    | In  | Description                                                      |
 | ---------- | ------- | --- | ---------------------------------------------------------------- |
 | token      | string  |     | **Required.** The token used to authenticate with the Fleet API. |
 | campaignID | integer |     | **Required.** The ID of the live query campaign.                 |
 
-#### Example
+**Example**
 
-##### Example script to handle request and response
+**Example script to handle request and response**
 
 ```
 const socket = new SockJS(`<your-base-url>/api/v1/fleet/results`, undefined, {});
@@ -2953,19 +2953,19 @@ socket.onmessage = ({ data }) => {
 }
 ```
 
-##### Detailed request and response walkthrough
+**Detailed request and response walkthrough**
 
-##### socket.onopen()
+### socket.onopen()
 
-###### Response data
+**Response data**
 
 ```json
 o
 ```
 
-##### socket.send()
+### socket.send()
 
-###### Request data
+**Request data**
 
 ```json
 [
@@ -2985,9 +2985,9 @@ o
 ]
 ```
 
-##### socket.onmessage()
+### socket.onmessage()
 
-###### Response data
+**Response data**
 
 ```json
 // Sends the total number of hosts targeted and segments them by status
@@ -3077,15 +3077,15 @@ For those familiar with osquery query packs, Fleet's query schedule can be thoug
 
 `GET /api/v1/fleet/global/schedule`
 
-#### Parameters
+**Parameters**
 
 None.
 
-#### Example
+**Example**
 
 `GET /api/v1/fleet/global/schedule`
 
-##### Default response
+**Default response**
 
 `Status: 200`
 
@@ -3134,7 +3134,7 @@ None.
 
 `POST /api/v1/fleet/global/schedule`
 
-#### Parameters
+**Parameters**
 
 | Name     | Type    | In   | Description                                                                                                                      |
 | -------- | ------- | ---- | -------------------------------------------------------------------------------------------------------------------------------- |
@@ -3146,11 +3146,11 @@ None.
 | shard    | integer | body | Restrict this query to a percentage (1-100) of target hosts. Default is `null`.                                                  |
 | version  | string  | body | The minimum required osqueryd version installed on a host. Default is `null`.                                                    |
 
-#### Example
+**Example**
 
 `POST /api/v1/fleet/global/schedule`
 
-##### Request body
+**Request body**
 
 ```json
 {
@@ -3160,7 +3160,7 @@ None.
 }
 ```
 
-##### Default response
+**Default response**
 
 `Status: 200`
 
@@ -3192,7 +3192,7 @@ None.
 
 `PATCH /api/v1/fleet/global/schedule/{id}`
 
-#### Parameters
+**Parameters**
 
 | Name     | Type    | In   | Description                                                                                                   |
 | -------- | ------- | ---- | ------------------------------------------------------------------------------------------------------------- |
@@ -3204,11 +3204,11 @@ None.
 | shard    | integer | body | Restrict this query to a percentage (1-100) of target hosts.                                                  |
 | version  | string  | body | The minimum required osqueryd version installed on a host.                                                    |
 
-#### Example
+**Example**
 
 `PATCH /api/v1/fleet/global/schedule/5`
 
-##### Request body
+**Request body**
 
 ```json
 {
@@ -3216,7 +3216,7 @@ None.
 }
 ```
 
-##### Default response
+**Default response**
 
 `Status: 200`
 
@@ -3245,15 +3245,15 @@ None.
 
 `DELETE /api/v1/fleet/global/schedule/{id}`
 
-#### Parameters
+**Parameters**
 
 None.
 
-#### Example
+**Example**
 
 `DELETE /api/v1/fleet/global/schedule/5`
 
-##### Default response
+**Default response**
 
 `Status: 200`
 
@@ -3271,11 +3271,11 @@ None.
 
 This allows you to easily configure scheduled queries that will impact a whole team of devices.
 
-#### Get team schedule
+**Get team schedule**
 
 `GET /api/v1/fleet/teams/{id}/schedule`
 
-#### Parameters
+**Parameters**
 
 | Name            | Type    | In    | Description                                                                                                                   |
 | --------------- | ------- | ----- | ----------------------------------------------------------------------------------------------------------------------------- |
@@ -3285,11 +3285,11 @@ This allows you to easily configure scheduled queries that will impact a whole t
 | order_key       | string  | query | What to order results by. Can be any column in the `activites` table.                                                         |
 | order_direction | string  | query | **Requires `order_key`**. The direction of the order given the order key. Options include `asc` and `desc`. Default is `asc`. |
 
-#### Example
+**Example**
 
 `GET /api/v1/fleet/teams/2/schedule`
 
-##### Default response
+**Default response**
 
 `Status: 200`
 
@@ -3334,11 +3334,11 @@ This allows you to easily configure scheduled queries that will impact a whole t
 }
 ```
 
-#### Add query to team schedule
+**Add query to team schedule**
 
 `POST /api/v1/fleet/teams/{id}/schedule`
 
-#### Parameters
+**Parameters**
 
 | Name     | Type    | In   | Description                                                                                                                      |
 | -------- | ------- | ---- | -------------------------------------------------------------------------------------------------------------------------------- |
@@ -3351,11 +3351,11 @@ This allows you to easily configure scheduled queries that will impact a whole t
 | shard    | integer | body | Restrict this query to a percentage (1-100) of target hosts. Default is `null`.                                                  |
 | version  | string  | body | The minimum required osqueryd version installed on a host. Default is `null`.                                                    |
 
-#### Example
+**Example**
 
 `POST /api/v1/fleet/teams/2/schedule`
 
-##### Request body
+**Request body**
 
 ```json
 {
@@ -3365,7 +3365,7 @@ This allows you to easily configure scheduled queries that will impact a whole t
 }
 ```
 
-##### Default response
+**Default response**
 
 `Status: 200`
 
@@ -3389,11 +3389,11 @@ This allows you to easily configure scheduled queries that will impact a whole t
 }
 ```
 
-#### Edit query in team schedule
+**Edit query in team schedule**
 
 `PATCH /api/v1/fleet/teams/{team_id}/schedule/{scheduled_query_id}`
 
-#### Parameters
+**Parameters**
 
 | Name               | Type    | In   | Description                                                                                                   |
 | ------------------ | ------- | ---- | ------------------------------------------------------------------------------------------------------------- |
@@ -3406,11 +3406,11 @@ This allows you to easily configure scheduled queries that will impact a whole t
 | shard              | integer | body | Restrict this query to a percentage (1-100) of target hosts.                                                  |
 | version            | string  | body | The minimum required osqueryd version installed on a host.                                                    |
 
-#### Example
+**Example**
 
 `PATCH /api/v1/fleet/teams/2/schedule/5`
 
-##### Request body
+**Request body**
 
 ```json
 {
@@ -3418,7 +3418,7 @@ This allows you to easily configure scheduled queries that will impact a whole t
 }
 ```
 
-##### Default response
+**Default response**
 
 `Status: 200`
 
@@ -3443,22 +3443,22 @@ This allows you to easily configure scheduled queries that will impact a whole t
 }
 ```
 
-#### Remove query from team schedule
+**Remove query from team schedule**
 
 `DELETE /api/v1/fleet/teams/{team_id}/schedule/{scheduled_query_id}`
 
-#### Parameters
+**Parameters**
 
 | Name               | Type    | In   | Description                             |
 | ------------------ | ------- | ---- | --------------------------------------- |
 | team_id            | integer | path | **Required.** The team's ID.            |
 | scheduled_query_id | integer | path | **Required.** The scheduled query's ID. |
 
-#### Example
+**Example**
 
 `DELETE /api/v1/fleet/teams/2/schedule/5`
 
-##### Default response
+**Default response**
 
 `Status: 200`
 
@@ -3486,7 +3486,7 @@ This allows you to easily configure scheduled queries that will impact a whole t
 
 `POST /api/v1/fleet/packs`
 
-#### Parameters
+**Parameters**
 
 | Name        | Type   | In   | Description                                                             |
 | ----------- | ------ | ---- | ----------------------------------------------------------------------- |
@@ -3496,11 +3496,11 @@ This allows you to easily configure scheduled queries that will impact a whole t
 | label_ids   | list   | body | A list containing the targeted label's IDs.                             |
 | team_ids    | list   | body | _Available in Fleet Premium_ A list containing the targeted teams' IDs. |
 
-#### Example
+**Example**
 
 `POST /api/v1/fleet/packs`
 
-##### Request query parameters
+**Request query parameters**
 
 ```json
 {
@@ -3511,7 +3511,7 @@ This allows you to easily configure scheduled queries that will impact a whole t
 }
 ```
 
-##### Default response
+**Default response**
 
 `Status: 200`
 
@@ -3538,7 +3538,7 @@ This allows you to easily configure scheduled queries that will impact a whole t
 
 `PATCH /api/v1/fleet/packs/{id}`
 
-#### Parameters
+**Parameters**
 
 | Name        | Type    | In   | Description                                                             |
 | ----------- | ------- | ---- | ----------------------------------------------------------------------- |
@@ -3549,11 +3549,11 @@ This allows you to easily configure scheduled queries that will impact a whole t
 | label_ids   | list    | body | A list containing the targeted label's IDs.                             |
 | team_ids    | list    | body | _Available in Fleet Premium_ A list containing the targeted teams' IDs. |
 
-#### Example
+**Example**
 
 `PATCH /api/v1/fleet/packs/{id}`
 
-##### Request query parameters
+**Request query parameters**
 
 ```json
 {
@@ -3563,7 +3563,7 @@ This allows you to easily configure scheduled queries that will impact a whole t
 }
 ```
 
-##### Default response
+**Default response**
 
 `Status: 200`
 
@@ -3590,17 +3590,17 @@ This allows you to easily configure scheduled queries that will impact a whole t
 
 `GET /api/v1/fleet/packs/{id}`
 
-#### Parameters
+**Parameters**
 
 | Name | Type    | In   | Description                  |
 | ---- | ------- | ---- | ---------------------------- |
 | id   | integer | path | **Required.** The pack's id. |
 
-#### Example
+**Example**
 
 `GET /api/v1/fleet/packs/17`
 
-##### Default response
+**Default response**
 
 `Status: 200`
 
@@ -3627,18 +3627,18 @@ This allows you to easily configure scheduled queries that will impact a whole t
 
 `GET /api/v1/fleet/packs`
 
-#### Parameters
+**Parameters**
 
 | Name            | Type   | In    | Description                                                                                                                   |
 | --------------- | ------ | ----- | ----------------------------------------------------------------------------------------------------------------------------- |
 | order_key       | string | query | What to order results by. Can be any column in the packs table.                                                               |
 | order_direction | string | query | **Requires `order_key`**. The direction of the order given the order key. Options include `asc` and `desc`. Default is `asc`. |
 
-#### Example
+**Example**
 
 `GET /api/v1/fleet/packs`
 
-##### Default response
+**Default response**
 
 `Status: 200`
 
@@ -3681,17 +3681,17 @@ This allows you to easily configure scheduled queries that will impact a whole t
 
 `DELETE /api/v1/fleet/packs/{name}`
 
-#### Parameters
+**Parameters**
 
 | Name | Type   | In   | Description                    |
 | ---- | ------ | ---- | ------------------------------ |
 | name | string | path | **Required.** The pack's name. |
 
-#### Example
+**Example**
 
 `DELETE /api/v1/fleet/packs/pack_number_one`
 
-##### Default response
+**Default response**
 
 `Status: 200`
 
@@ -3700,17 +3700,17 @@ This allows you to easily configure scheduled queries that will impact a whole t
 
 `DELETE /api/v1/fleet/packs/id/{id}`
 
-#### Parameters
+**Parameters**
 
 | Name | Type    | In   | Description                  |
 | ---- | ------- | ---- | ---------------------------- |
 | id   | integer | path | **Required.** The pack's ID. |
 
-#### Example
+**Example**
 
 `DELETE /api/v1/fleet/packs/id/1`
 
-##### Default response
+**Default response**
 
 `Status: 200`
 
@@ -3719,17 +3719,17 @@ This allows you to easily configure scheduled queries that will impact a whole t
 
 `GET /api/v1/fleet/packs/{id}/scheduled`
 
-#### Parameters
+**Parameters**
 
 | Name | Type    | In   | Description                  |
 | ---- | ------- | ---- | ---------------------------- |
 | id   | integer | path | **Required.** The pack's ID. |
 
-#### Example
+**Example**
 
 `GET /api/v1/fleet/packs/1/scheduled`
 
-##### Default response
+**Default response**
 
 `Status: 200`
 
@@ -3795,7 +3795,7 @@ This allows you to easily configure scheduled queries that will impact a whole t
 
 `POST /api/v1/fleet/schedule`
 
-#### Parameters
+**Parameters**
 
 | Name     | Type    | In   | Description                                                                                                   |
 | -------- | ------- | ---- | ------------------------------------------------------------------------------------------------------------- |
@@ -3808,11 +3808,11 @@ This allows you to easily configure scheduled queries that will impact a whole t
 | shard    | integer | body | Restrict this query to a percentage (1-100) of target hosts.                                                  |
 | version  | string  | body | The minimum required osqueryd version installed on a host.                                                    |
 
-#### Example
+**Example**
 
 `POST /api/v1/fleet/schedule`
 
-#### Request body
+**Request body**
 
 ```json
 {
@@ -3827,7 +3827,7 @@ This allows you to easily configure scheduled queries that will impact a whole t
 }
 ```
 
-##### Default response
+**Default response**
 
 `Status: 200`
 
@@ -3856,17 +3856,17 @@ This allows you to easily configure scheduled queries that will impact a whole t
 
 `GET /api/v1/fleet/schedule/{id}`
 
-#### Parameters
+**Parameters**
 
 | Name | Type    | In   | Description                             |
 | ---- | ------- | ---- | --------------------------------------- |
 | id   | integer | path | **Required.** The scheduled query's ID. |
 
-#### Example
+**Example**
 
 `GET /api/v1/fleet/schedule/56`
 
-##### Default response
+**Default response**
 
 `Status: 200`
 
@@ -3896,7 +3896,7 @@ This allows you to easily configure scheduled queries that will impact a whole t
 
 `PATCH /api/v1/fleet/schedule/{id}`
 
-#### Parameters
+**Parameters**
 
 | Name     | Type    | In   | Description                                                                                                   |
 | -------- | ------- | ---- | ------------------------------------------------------------------------------------------------------------- |
@@ -3908,11 +3908,11 @@ This allows you to easily configure scheduled queries that will impact a whole t
 | shard    | integer | body | Restrict this query to a percentage (1-100) of target hosts.                                                  |
 | version  | string  | body | The minimum required osqueryd version installed on a host.                                                    |
 
-#### Example
+**Example**
 
 `PATCH /api/v1/fleet/schedule/56`
 
-#### Request body
+**Request body**
 
 ```json
 {
@@ -3920,7 +3920,7 @@ This allows you to easily configure scheduled queries that will impact a whole t
 }
 ```
 
-##### Default response
+**Default response**
 
 `Status: 200`
 
@@ -3949,17 +3949,17 @@ This allows you to easily configure scheduled queries that will impact a whole t
 
 `DELETE /api/v1/fleet/schedule/{id}`
 
-#### Parameters
+**Parameters**
 
 | Name | Type    | In   | Description                             |
 | ---- | ------- | ---- | --------------------------------------- |
 | id   | integer | path | **Required.** The scheduled query's ID. |
 
-#### Example
+**Example**
 
 `DELETE /api/v1/fleet/schedule/56`
 
-##### Default response
+**Default response**
 
 `Status: 200`
 
@@ -3970,11 +3970,11 @@ Returns the specs for all packs in the Fleet instance.
 
 `GET /api/v1/fleet/spec/packs`
 
-#### Example
+**Example**
 
 `GET /api/v1/fleet/spec/packs`
 
-##### Default response
+**Default response**
 
 `Status: 200`
 
@@ -4086,17 +4086,17 @@ Returns the specs for all packs in the Fleet instance.
 
 `POST /api/v1/fleet/spec/packs`
 
-#### Parameters
+**Parameters**
 
 | Name  | Type | In   | Description                                                                                   |
 | ----- | ---- | ---- | --------------------------------------------------------------------------------------------- |
 | specs | list | body | **Required.** A list that includes the specs for each pack to be added to the Fleet instance. |
 
-#### Example
+**Example**
 
 `POST /api/v1/fleet/spec/packs`
 
-##### Request body
+**Request body**
 
 ```json
 {
@@ -4185,7 +4185,7 @@ Returns the specs for all packs in the Fleet instance.
 }
 ```
 
-##### Default response
+**Default response**
 
 `Status: 200`
 
@@ -4196,17 +4196,17 @@ Returns the spec for the specified pack by pack name.
 
 `GET /api/v1/fleet/spec/packs/{name}`
 
-#### Parameters
+**Parameters**
 
 | Name | Type   | In   | Description                    |
 | ---- | ------ | ---- | ------------------------------ |
 | name | string | path | **Required.** The pack's name. |
 
-#### Example
+**Example**
 
 `GET /api/v1/fleet/spec/packs/pack_1`
 
-##### Default response
+**Default response**
 
 `Status: 200`
 
@@ -4301,11 +4301,11 @@ Hosts that do not return results for a policy's query are "Failing."
 
 `GET /api/v1/fleet/global/policies`
 
-#### Example
+**Example**
 
 `GET /api/v1/fleet/global/policies`
 
-##### Default response
+**Default response**
 
 `Status: 200`
 
@@ -4334,17 +4334,17 @@ Hosts that do not return results for a policy's query are "Failing."
 
 `GET /api/v1/fleet/global/policies/{id}`
 
-#### Parameters
+**Parameters**
 
 | Name               | Type    | In   | Description                                                                                                   |
 | ------------------ | ------- | ---- | ------------------------------------------------------------------------------------------------------------- |
 | id          | integer | path | **Required.** The policy's ID.                                                                                  |
 
-#### Example
+**Example**
 
 `GET /api/v1/fleet/global/policies/1`
 
-##### Default response
+**Default response**
 
 `Status: 200`
 
@@ -4364,17 +4364,17 @@ Hosts that do not return results for a policy's query are "Failing."
 
 `POST /api/v1/fleet/global/policies`
 
-#### Parameters
+**Parameters**
 
 | Name     | Type    | In   | Description                    |
 | -------- | ------- | ---- | ------------------------------ |
 | query_id | integer | body | **Required.** The query's ID.  |
 
-#### Example
+**Example**
 
 `POST /api/v1/fleet/global/policies`
 
-#### Request body
+**Request body**
 
 ```json
 {
@@ -4382,7 +4382,7 @@ Hosts that do not return results for a policy's query are "Failing."
 }
 ```
 
-##### Default response
+**Default response**
 
 `Status: 200`
 
@@ -4402,17 +4402,17 @@ Hosts that do not return results for a policy's query are "Failing."
 
 `POST /api/v1/fleet/global/policies/delete`
 
-#### Parameters
+**Parameters**
 
 | Name     | Type    | In   | Description                                       |
 | -------- | ------- | ---- | ------------------------------------------------- |
 | ids      | list    | body | **Required.** The IDs of the policies to delete.  |
 
-#### Example
+**Example**
 
 `POST /api/v1/fleet/global/policies/delete`
 
-#### Request body
+**Request body**
 
 ```json
 {
@@ -4420,7 +4420,7 @@ Hosts that do not return results for a policy's query are "Failing."
 }
 ```
 
-##### Default response
+**Default response**
 
 `Status: 200`
 
@@ -4447,17 +4447,17 @@ Team policies work the same as policies, but at the team level.
 
 `GET /api/v1/fleet/teams/{team_id}/policies`
 
-#### Parameters
+**Parameters**
 
 | Name               | Type    | In   | Description                                                                                                   |
 | ------------------ | ------- | ---- | ------------------------------------------------------------------------------------------------------------- |
 | team_id            | integer | url  | Defines what team id to operate on                                                                            |
 
-#### Example
+**Example**
 
 `GET /api/v1/fleet/teams/1/policies`
 
-##### Default response
+**Default response**
 
 `Status: 200`
 
@@ -4486,18 +4486,18 @@ Team policies work the same as policies, but at the team level.
 
 `GET /api/v1/fleet/teams/{team_id}/policies/{id}`
 
-#### Parameters
+**Parameters**
 
 | Name               | Type    | In   | Description                                                                                                   |
 | ------------------ | ------- | ---- | ------------------------------------------------------------------------------------------------------------- |
 | team_id            | integer | url  | Defines what team id to operate on                                                                            |
 | id                 | integer | path | **Required.** The policy's ID.                                                                                |
 
-#### Example
+**Example**
 
 `GET /api/v1/fleet/teams/1/policies/1`
 
-##### Default response
+**Default response**
 
 `Status: 200`
 
@@ -4517,18 +4517,18 @@ Team policies work the same as policies, but at the team level.
 
 `POST /api/v1/fleet/teams/{team_id}/policies`
 
-#### Parameters
+**Parameters**
 
 | Name     | Type    | In   | Description                         |
 | -------- | ------- | ---- | ----------------------------------- |
 | team_id  | integer | url  | Defines what team id to operate on  |
 | query_id | integer | body | **Required.** The query's ID.       |
 
-#### Example
+**Example**
 
 `POST /api/v1/fleet/teams/1/policies`
 
-#### Request body
+**Request body**
 
 ```
 {
@@ -4536,7 +4536,7 @@ Team policies work the same as policies, but at the team level.
 }
 ```
 
-##### Default response
+**Default response**
 
 `Status: 200`
 
@@ -4556,18 +4556,18 @@ Team policies work the same as policies, but at the team level.
 
 `POST /api/v1/fleet/teams/{team_id}/policies/delete`
 
-#### Parameters
+**Parameters**
 
 | Name     | Type    | In   | Description                                       |
 | -------- | ------- | ---- | ------------------------------------------------- |
 | team_id  | integer | url  | Defines what team id to operate on                |
 | ids      | list    | body | **Required.** The IDs of the policies to delete.  |
 
-#### Example
+**Example**
 
 `POST /api/v1/fleet/teams/1/policies/delete`
 
-#### Request body
+**Request body**
 
 ```
 {
@@ -4575,7 +4575,7 @@ Team policies work the same as policies, but at the team level.
 }
 ```
 
-##### Default response
+**Default response**
 
 `Status: 200`
 
@@ -4607,7 +4607,7 @@ Returns a list of the activities that have been performed in Fleet. The followin
 
 `GET /api/v1/fleet/activities`
 
-#### Parameters
+**Parameters**
 
 | Name            | Type    | In    | Description                                                                                                                   |
 | --------------- | ------- | ----- | ----------------------------------------------------------------------------------------------------------------------------- |
@@ -4616,11 +4616,11 @@ Returns a list of the activities that have been performed in Fleet. The followin
 | order_key       | string  | query | What to order results by. Can be any column in the `activites` table.                                                         |
 | order_direction | string  | query | **Requires `order_key`**. The direction of the order given the order key. Options include `asc` and `desc`. Default is `asc`. |
 
-#### Example
+**Example**
 
 `GET /api/v1/fleet/activities?page=0&per_page=10&order_key=created_at&order_direction=desc`
 
-##### Default response
+**Default response**
 
 ```json
 {
@@ -4771,7 +4771,7 @@ The returned lists are filtered based on the hosts the requesting user has acces
 
 `POST /api/v1/fleet/targets`
 
-#### Parameters
+**Parameters**
 
 | Name     | Type    | In   | Description                                                                                                                                                                |
 | -------- | ------- | ---- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -4779,11 +4779,11 @@ The returned lists are filtered based on the hosts the requesting user has acces
 | query_id | integer | body | The saved query (if any) that will be run. The `observer_can_run` property on the query and the user's roles effect which targets are included.                            |
 | selected | object  | body | The targets already selected. The object includes a `hosts` property which contains a list of host IDs, a `labels` with label IDs and/or a `teams` property with team IDs. |
 
-#### Example
+**Example**
 
 `POST /api/v1/fleet/targets`
 
-##### Request body
+**Request body**
 
 ```json
 {
@@ -4796,7 +4796,7 @@ The returned lists are filtered based on the hosts the requesting user has acces
 }
 ```
 
-##### Default response
+**Default response**
 
 ```json
 {
@@ -4936,15 +4936,15 @@ Returns the Fleet certificate.
 
 `GET /api/v1/fleet/config/certificate`
 
-#### Parameters
+**Parameters**
 
 None.
 
-#### Example
+**Example**
 
 `GET /api/v1/fleet/config/certificate`
 
-##### Default response
+**Default response**
 
 `Status: 200`
 
@@ -4960,15 +4960,15 @@ Returns all information about the Fleet's configuration.
 
 `GET /api/v1/fleet/config`
 
-#### Parameters
+**Parameters**
 
 None.
 
-#### Example
+**Example**
 
 `GET /api/v1/fleet/config`
 
-##### Default response
+**Default response**
 
 `Status: 200`
 
@@ -5117,7 +5117,7 @@ Modifies the Fleet's configuration with the supplied information.
 
 `PATCH /api/v1/fleet/config`
 
-#### Parameters
+**Parameters**
 
 | Name                  | Type    | In   | Description                                                                                                                                                                            |
 | --------------------- | ------- | ---- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -5148,11 +5148,11 @@ Modifies the Fleet's configuration with the supplied information.
 | agent_options         | objects | body | The agent_options spec that is applied to all hosts. In Fleet 4.0.0 the `api/v1/fleet/spec/osquery_options` endpoints were removed.                                                    |
 | additional_queries    | boolean | body | Whether or not additional queries are enabled on hosts.                                                                                                                                |
 
-#### Example
+**Example**
 
 `PATCH /api/v1/fleet/config`
 
-##### Request body
+**Request body**
 
 ```json
 {
@@ -5168,7 +5168,7 @@ Modifies the Fleet's configuration with the supplied information.
 }
 ```
 
-##### Default response
+**Default response**
 
 `Status: 200`
 
@@ -5285,15 +5285,15 @@ Returns the valid global enroll secrets.
 
 `GET /api/v1/fleet/spec/enroll_secret`
 
-#### Parameters
+**Parameters**
 
 None.
 
-#### Example
+**Example**
 
 `GET /api/v1/fleet/spec/enroll_secret`
 
-##### Default response
+**Default response**
 
 `Status: 200`
 
@@ -5320,15 +5320,15 @@ Replaces the active global enroll secrets with the secrets specified.
 
 `POST /api/v1/fleet/spec/enroll_secret`
 
-#### Parameters
+**Parameters**
 
 | Name   | Type   | In   | Description                                                    |
 | ------ | ------ | ---- | -------------------------------------------------------------- |
 | secret | string | body | **Required.** The plain text string used as the enroll secret. |
 
-#### Example
+**Example**
 
-##### Request body
+**Request body**
 
 ```json
 {
@@ -5344,7 +5344,7 @@ Replaces the active global enroll secrets with the secrets specified.
 
 `POST /api/v1/fleet/spec/enroll_secret`
 
-##### Default response
+**Default response**
 
 `Status: 200`
 
@@ -5355,15 +5355,15 @@ Returns the valid team enroll secret.
 
 `GET /api/v1/fleet/teams/{id}/secrets`
 
-#### Parameters
+**Parameters**
 
 None.
 
-#### Example
+**Example**
 
 `GET /api/v1/fleet/teams/1/secrets`
 
-##### Default response
+**Default response**
 
 `Status: 200`
 
@@ -5383,7 +5383,7 @@ None.
 
 `POST /api/v1/fleet/invites`
 
-#### Parameters
+**Parameters**
 
 | Name        | Type    | In   | Description                                                                                                                                           |
 | ----------- | ------- | ---- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -5393,9 +5393,9 @@ None.
 | sso_enabled | boolean | body | **Required.** Whether or not SSO will be enabled for the invited user.                                                                                |
 | teams       | list    | body | _Available in Fleet Premium_ A list of the teams the user is a member of. Each item includes the team's ID and the user's role in the specified team. |
 
-#### Example
+**Example**
 
-##### Request body
+**Request body**
 
 ```json
 {
@@ -5418,7 +5418,7 @@ None.
 
 `POST /api/v1/fleet/invites`
 
-##### Default response
+**Default response**
 
 `Status: 200`
 
@@ -5464,7 +5464,7 @@ Returns a list of the active invitations in Fleet.
 
 `GET /api/v1/fleet/invites`
 
-#### Parameters
+**Parameters**
 
 | Name            | Type   | In    | Description                                                                                                                   |
 | --------------- | ------ | ----- | ----------------------------------------------------------------------------------------------------------------------------- |
@@ -5472,11 +5472,11 @@ Returns a list of the active invitations in Fleet.
 | order_direction | string | query | **Requires `order_key`**. The direction of the order given the order key. Options include `asc` and `desc`. Default is `asc`. |
 | query           | string | query | Search query keywords. Searchable fields include `name` and `email`.                                                          |
 
-#### Example
+**Example**
 
 `GET /api/v1/fleet/invites`
 
-##### Default response
+**Default response**
 
 `Status: 200`
 
@@ -5513,17 +5513,17 @@ Delete the specified invite from Fleet.
 
 `DELETE /api/v1/fleet/invites/{id}`
 
-#### Parameters
+**Parameters**
 
 | Name | Type    | In   | Description                  |
 | ---- | ------- | ---- | ---------------------------- |
 | id   | integer | path | **Required.** The user's id. |
 
-#### Example
+**Example**
 
 `DELETE /api/v1/fleet/invites/{id}`
 
-##### Default response
+**Default response**
 
 `Status: 200`
 
@@ -5534,17 +5534,17 @@ Verify the specified invite.
 
 `GET /api/v1/fleet/invites/{token}`
 
-#### Parameters
+**Parameters**
 
 | Name  | Type    | In   | Description                            |
 | ----- | ------- | ---- | -------------------------------------- |
 | token | integer | path | **Required.** The user's invite token. |
 
-#### Example
+**Example**
 
 `GET /api/v1/fleet/invites/{token}`
 
-##### Default response
+**Default response**
 
 `Status: 200`
 
@@ -5563,7 +5563,7 @@ Verify the specified invite.
 }
 ```
 
-##### Not found
+**Not found**
 
 `Status: 404`
 
@@ -5585,15 +5585,15 @@ Get version and build information from the Fleet server.
 
 `GET /api/v1/fleet/version`
 
-#### Parameters
+**Parameters**
 
 None.
 
-#### Example
+**Example**
 
 `GET /api/v1/fleet/version`
 
-##### Default response
+**Default response**
 
 `Status: 200`
 
@@ -5628,15 +5628,15 @@ Retrieves a list of the non expired carves. Carve contents remain available for 
 
 `GET /api/v1/fleet/carves`
 
-#### Parameters
+**Parameters**
 
 None.
 
-#### Example
+**Example**
 
 `GET /api/v1/fleet/carves`
 
-##### Default response
+**Default response**
 
 `Status: 200`
 
@@ -5681,17 +5681,17 @@ Retrieves the specified carve.
 
 `GET /api/v1/fleet/carves/{id}`
 
-#### Parameters
+**Parameters**
 
 | Name | Type    | In   | Description                           |
 | ---- | ------- | ---- | ------------------------------------- |
 | id   | integer | path | **Required.** The desired carve's ID. |
 
-#### Example
+**Example**
 
 `GET /api/v1/fleet/carves/1`
 
-##### Default response
+**Default response**
 
 `Status: 200`
 
@@ -5720,18 +5720,18 @@ Retrieves the specified carve block. This endpoint retrieves the data that was c
 
 `GET /api/v1/fleet/carves/{id}/block/{block_id}`
 
-#### Parameters
+**Parameters**
 
 | Name     | Type    | In   | Description                                 |
 | -------- | ------- | ---- | ------------------------------------------- |
 | id       | integer | path | **Required.** The desired carve's ID.       |
 | block_id | integer | path | **Required.** The desired carve block's ID. |
 
-#### Example
+**Example**
 
 `GET /api/v1/fleet/carves/1/block/0`
 
-##### Default response
+**Default response**
 
 `Status: 200`
 
@@ -5751,7 +5751,7 @@ _Available in Fleet Premium_
 
 `GET /api/v1/fleet/teams`
 
-#### Parameters
+**Parameters**
 
 | Name            | Type    | In    | Description                                                                                                                   |
 | --------------- | ------- | ----- | ----------------------------------------------------------------------------------------------------------------------------- |
@@ -5761,11 +5761,11 @@ _Available in Fleet Premium_
 | order_direction | string  | query | **Requires `order_key`**. The direction of the order given the order key. Options include `asc` and `desc`. Default is `asc`. |
 | query           | string  | query | Search query keywords. Searchable fields include `name`.                                                                      |
 
-#### Example
+**Example**
 
 `GET /api/v1/fleet/teams`
 
-##### Default response
+**Default response**
 
 `Status: 200`
 
@@ -5773,7 +5773,7 @@ _Available in Fleet Premium_
 {
   "teams": [
     {
-      "id": 1.
+      "id": 1,
       "created_at": "2021-07-28T15:58:21Z",
       "name": "workstations",
       "description": "",
@@ -5835,15 +5835,16 @@ _Available in Fleet Premium_
           },
           "overrides": {}
         },
-      "user_count": 0,
-      "host_count": 0,
-      "secrets": [
-        {
-          "secret": "+ncixtnZB+IE0OrbrkCLeul3U8LMVITd",
-          "created_at": "2021-08-05T21:41:42Z",
-          "team_id": 15
-        }
-      ]
+        "user_count": 0,
+        "host_count": 0,
+        "secrets": [
+          {
+            "secret": "+ncixtnZB+IE0OrbrkCLeul3U8LMVITd",
+            "created_at": "2021-08-05T21:41:42Z",
+            "team_id": 15
+          }
+        ]
+      }
     }
   ]
 }
@@ -5855,17 +5856,17 @@ _Available in Fleet Premium_
 
 `POST /api/v1/fleet/teams`
 
-#### Parameters
+**Parameters**
 
 | Name | Type   | In   | Description                    |
 | ---- | ------ | ---- | ------------------------------ |
 | name | string | body | **Required.** The team's name. |
 
-#### Example
+**Example**
 
 `POST /api/v1/fleet/teams`
 
-##### Request body
+**Request body**
 
 ```json
 {
@@ -5873,7 +5874,7 @@ _Available in Fleet Premium_
 }
 ```
 
-##### Default response
+**Default response**
 
 `Status: 200`
 
@@ -5921,7 +5922,7 @@ _Available in Fleet Premium_
 
 `PATCH /api/v1/fleet/teams/{id}`
 
-#### Parameters
+**Parameters**
 
 | Name     | Type   | In   | Description                                   |
 | -------- | ------ | ---- | --------------------------------------------- |
@@ -5930,11 +5931,11 @@ _Available in Fleet Premium_
 | host_ids | list   | body | A list of hosts that belong to the team.      |
 | user_ids | list   | body | A list of users that are members of the team. |
 
-#### Example (add users to a team)
+**Example (add users to a team)**
 
 `PATCH /api/v1/fleet/teams/1`
 
-##### Request body
+**Request body**
 
 ```json
 {
@@ -5942,7 +5943,7 @@ _Available in Fleet Premium_
 }
 ```
 
-##### Default response
+**Default response**
 
 `Status: 200`
 
@@ -5982,11 +5983,11 @@ _Available in Fleet Premium_
 }
 ```
 
-#### Example (transfer hosts to a team)
+**Example (transfer hosts to a team)**
 
 `PATCH /api/v1/fleet/teams/1`
 
-##### Request body
+**Request body**
 
 ```json
 {
@@ -5994,7 +5995,7 @@ _Available in Fleet Premium_
 }
 ```
 
-##### Default response
+**Default response**
 
 `Status: 200`
 
@@ -6034,11 +6035,11 @@ _Available in Fleet Premium_
 }
 ```
 
-#### Example (edit agent options for a team)
+**Example (edit agent options for a team)**
 
 `PATCH /api/v1/fleet/teams/1`
 
-##### Request body
+**Request body**
 
 ```json
 {
@@ -6068,7 +6069,7 @@ _Available in Fleet Premium_
 }
 ```
 
-##### Default response
+**Default response**
 
 `Status: 200`
 
@@ -6114,17 +6115,17 @@ _Available in Fleet Premium_
 
 `DELETE /api/v1/fleet/teams/{id}`
 
-#### Parameters
+**Parameters**
 
 | Name | Type   | In   | Description                          |
 | ---- | ------ | ---- | ------------------------------------ |
 | id   | string | body | **Required.** The desired team's ID. |
 
-#### Example
+**Example**
 
 `DELETE /api/v1/fleet/teams/1`
 
-#### Default response
+**Default response**
 
 `Status: 200`
 
@@ -6138,7 +6139,7 @@ If the `name` is not already associated with an existing team, this API route cr
 
 `POST /api/v1/fleet/spec/teams`
 
-#### Parameters
+**Parameters**
 
 | Name | Type   | In   | Description                    |
 | ---- | ------ | ---- | ------------------------------ |
@@ -6146,11 +6147,11 @@ If the `name` is not already associated with an existing team, this API route cr
 | agent_options | string | body | **Required.** The agent options spec that is applied to the hosts assigned to the specified to team. These agent agent options completely override the global agent options specified in the [`GET /api/v1/fleet/config API route`](#get-configuration)|
 | secrets | list | body | **Required.** A list of plain text strings used as the enroll secrets. |
 
-#### Example
+**Example**
 
 `POST /api/v1/fleet/spec/teams`
 
-##### Request body
+**Request body**
 
 ```json
 {
@@ -6193,7 +6194,7 @@ If the `name` is not already associated with an existing team, this API route cr
 }
 ```
 
-#### Default response
+**Default response**
 
 `Status: 200`
 
@@ -6205,17 +6206,17 @@ If the `name` is not already associated with an existing team, this API route cr
 
 `POST /api/v1/fleet/translate`
 
-#### Parameters
+**Parameters**
 
 | Name | Type  | In   | Description                              |
 | ---- | ----- | ---- | ---------------------------------------- |
 | list | array | body | **Required** list of items to translate. |
 
-#### Example
+**Example**
 
 `POST /api/v1/fleet/translate`
 
-##### Request body
+**Request body**
 
 ```json
 {
@@ -6248,7 +6249,7 @@ If the `name` is not already associated with an existing team, this API route cr
 }
 ```
 
-##### Default response
+**Default response**
 
 `Status: 200`
 
@@ -6293,7 +6294,7 @@ If the `name` is not already associated with an existing team, this API route cr
 
 `GET /api/v1/fleet/software`
 
-#### Parameters
+**Parameters**
 
 | Name                    | Type    | In    | Description                                                                                                                                                                                                                                                                                                                                 |
 | ----------------------- | ------- | ----- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -6304,54 +6305,53 @@ If the `name` is not already associated with an existing team, this API route cr
 | query                   | string  | query | Search query keywords. Searchable fields include `hostname`, `machine_serial`, `uuid`, and `ipv4`.                                                                                                                                                                                                                                          |
 | team_id                 | integer | query | _Available in Fleet Premium_ Filters the users to only include users in the specified team.                                                                                                                                                                                                                                                 |
 
-#### Example
+**Example**
 
 `GET /api/v1/fleet/software`
 
-##### Default response
+**Default response**
 
 `Status: 200`
 
 ```json
 {
-    “software”: [
-      {
-        "hosts_count": 124,
-        "id": 1,
-        "name": "Chrome.app",
-        "version": "2.1.11",
-        "source": "Application (macOS)",
-        "generated_cpe": "",
-        "vulnerabilities": null
-      },
-      {
-        "hosts_count": 112,
-        "id": 2,
-        "name": "Figma.app",
-        "version": "2.1.11",
-        "source": "Application (macOS)",
-        "generated_cpe": "",
-        "vulnerabilities": null
-      },
-      {
-        "hosts_count": 78,
-        "id": 3,
-        "name": "osquery",
-        "version": "2.1.11",
-        "source": "rpm_packages",
-        "generated_cpe": "",
-        "vulnerabilities": null
-      },
-      {
-        "hosts_count": 78,
-        "id": 4,
-        "name": "osquery",
-        "version": "2.1.11",
-        "source": "rpm_packages",
-        "generated_cpe": "",
-        "vulnerabilities": null
-      },
-    ]
-  }
+  "software": [
+    {
+      "hosts_count": 124,
+      "id": 1,
+      "name": "Chrome.app",
+      "version": "2.1.11",
+      "source": "Application (macOS)",
+      "generated_cpe": "",
+      "vulnerabilities": null
+    },
+    {
+      "hosts_count": 112,
+      "id": 2,
+      "name": "Figma.app",
+      "version": "2.1.11",
+      "source": "Application (macOS)",
+      "generated_cpe": "",
+      "vulnerabilities": null
+    },
+    {
+      "hosts_count": 78,
+      "id": 3,
+      "name": "osquery",
+      "version": "2.1.11",
+      "source": "rpm_packages",
+      "generated_cpe": "",
+      "vulnerabilities": null
+    },
+    {
+      "hosts_count": 78,
+      "id": 4,
+      "name": "osquery",
+      "version": "2.1.11",
+      "source": "rpm_packages",
+      "generated_cpe": "",
+      "vulnerabilities": null
+    },
+  ]
 }
 ```
