@@ -1,7 +1,7 @@
 
 ## Fleet EE
 
-#### Communicating design changes to Engineering
+**Communicating design changes to Engineering**
 For something NEW that has been added to [Figma Fleet EE (current, dev-ready)](https://www.figma.com/file/qpdty1e2n22uZntKUZKEJl/?node-id=0%3A1):
 1. Create a new [GitHub issue](https://github.com/fleetdm/fleet/issues/new)
 2. Detail the required changes (including page links to the relevant layouts), then assign it to the __“Initiatives”__ project.
@@ -16,24 +16,24 @@ For something NEW that has been added to [Figma Fleet EE (current, dev-ready)](h
 
 <img src="https://user-images.githubusercontent.com/78363703/129840735-3b270429-a92a-476d-87b4-86b93057b2dd.png" alt="Inspire me"/>
 
-#### Communicating unplanned design changes
+**Communicating unplanned design changes**
 
 For issues related to something that was ALREADY in Figma Fleet EE (current, dev-ready), but __implemented differently__, e.g, padding/spacing inconsistency etc. Create a [bug issue](https://github.com/fleetdm/fleet/issues/new?assignees=&labels=bug%2C%3Areproduce&template=bug-report.md&title=) and detail the required changes.
 
 ## Fleet docs
 
-#### Adding a link to Fleet docs
+**Adding a link to Fleet docs**
 You can link documentation pages to each other using relative paths. For example, in `docs/1-Using-Fleet/1-Fleet-UI.md`, you can link to `docs/1-Using-Fleet/9-Permissions.md` by writing `[permissions](./9-Permissions.md)`. This will be automatically transformed into the appropriate URL for `fleetdm.com/docs`.
 
 However, the `fleetdm.com/docs` compilation process does not account for relative links to directories **outside** of `/docs`.
 Therefore, when adding a link to Fleet docs, it is important to always use the absolute file path.
 
-#### Linking to a location on GitHub
+**Linking to a location on GitHub**
 When adding a link to a location on GitHub that is outside of `/docs`, be sure to use the canonical form of the URL.
 
 To do this, navigate to the file's location on GitHub, and press "y" to transform the URL into its canonical form.
 
-#### How to fix a broken link
+**How to fix a broken link**
 For instances in which a broken link is discovered on fleetdm.com, check if the link is a relative link to a directory outside of `/docs`. 
 
 An example of a link that lives outside of `/docs` is:
@@ -64,15 +64,15 @@ Please start the manual QA process by creating a blank GitHub issue. As you comp
 
 For all following flows, please refer to the [permissions documentation](https://fleetdm.com/docs/using-fleet/permissions) to ensure that actions are limited to the appropriate user type. Any users with access beyond what this document lists as availale should be considered a bug and reported for either documentation updates or investigation.
 
-#### Set up flow
+**Set up flow**
 
 Successfully set up `fleetctl preview` using the preview steps outlined [here](https://fleetdm.com/get-started)
 
-#### Login and logout flow
+**Login and logout flow**
 
 Successfully logout and then login to your local Fleet.
 
-#### Host details page
+**Host details page**
 
 Select a host from the "Hosts" table as a global user with the Maintainer role. You may create a user with a fake email for this purpose.
 
@@ -80,7 +80,7 @@ You should be able to see and select the "Delete" button on this host's **Host d
 
 You should be able to see and select the "Query" button on this host's **Host details** page.
 
-#### Label flow
+**Label flow**
 
 `Flow is covered by e2e testing`
 
@@ -90,7 +90,7 @@ Edit this label. Confirm users can only edit the "Name" and "Description" fields
 
 Delete this label.
 
-#### Query flow
+**Query flow**
 
 `Flow is covered by e2e testing`
 
@@ -100,7 +100,7 @@ Run this query as a live query against your local machine.
 
 Edit this query and then delete this query.
 
-#### Pack flow
+**Pack flow**
 
 `Flow is covered by e2e testing`
 
@@ -109,32 +109,32 @@ Create a new pack (under Schedule/advanced).
 Add a query as a saved query to the pack. Remove this query. Delete the pack.
 
 
-#### My account flow
+**My account flow**
 
 Head to the My account page by selecting the dropdown icon next to your avatar in the top navigation. Select "My account" and successfully update your password. Please do this with an extra user created for this purpose to maintain accessibility of `fleetctl preview` admin user.
 
 
 ### fleetctl CLI
 
-#### Set up flow
+**Set up flow**
 
 Successfully set up Fleet by running the `fleetctl setup` command.
 
 You may have to wipe your local MySQL database in order to successfully set up Fleet. Check out the [Clear your local MySQL database](#clear-your-local-mysql-database) section of this document for instructions.
 
-#### Login and logout flow
+**Login and logout flow**
 
 Successfully login by running the `fleetctl login` command.
 
 Successfully logout by running the `fleetctl logout` command. Then, log in again.
 
-#### Hosts
+**Hosts**
 
 Run the `fleetctl get hosts` command.
 
 You should see your local machine returned. If your host isn't showing up, you may have to reenroll your local machine. Check out the [Orbit for osquery documentation](https://github.com/fleetdm/fleet/blob/main/orbit/README.md) for instructions on generating and installing an Orbit package.
 
-#### Query flow
+**Query flow**
 
 Apply the standard query library by running the following command:
 
@@ -148,7 +148,7 @@ Run the "Get the version of the resident operating system" query against your lo
 
 `fleetctl query --hosts <your-local-machine-here> --query-name "Get the version of the resident operating system"`
 
-#### Pack flow
+**Pack flow**
 
 Apply a pack by running the following commands:
 
@@ -160,13 +160,13 @@ Make sure the pack was successfully added by running the following command:
 
 `fleetctl get packs`
 
-#### Organization settings flow
+**Organization settings flow**
 
 Apply organization settings by running the following command:
 
 `fleetctl apply -f docs/1-Using-Fleet/configuration-files/multi-file-configuration/organization-settings.yml`
 
-#### Manage users flow
+**Manage users flow**
 
 Create a new user by running the `fleetctl user create` command.
 
@@ -205,7 +205,7 @@ Check out the [Fleet 4.1.0 blog post](https://blog.fleetdm.com/fleet-4-1-0-57dfa
 
 **Upgrade plan** - Once sentence that links to user to the upgrading Fleet documentation here: https://github.com/fleetdm/fleet/blob/main/docs/01-Using-Fleet/08-Updating-Fleet.md
 
-#### Manual QA
+**Manual QA**
 
 After all changes required for release have been merged into the `main` branch, the individual tasked with managing the release should perform a manual quality assurance pass. 
 
@@ -257,7 +257,7 @@ This way, the Fleet team can constantly improve the effectiveness and experience
 
 - If things get heated, remember to stay [positive and helpful](https://canny.io/blog/moderating-user-comments-diplomatically/).  If you aren't sure how best to respond in a positive way, or if you see behavior that violates the Fleet code of conduct, get help.
 
-#### Requesting more details
+**Requesting more details**
 
 Typically, the *questions*, *bug reports*, and *feature requests* raised by members of the community will be missing helpful context, recreation steps, or motivations respectively.
 
@@ -276,13 +276,13 @@ Typically, the *questions*, *bug reports*, and *feature requests* raised by memb
 - Let's say a community member submits the feature request "I want the ability to do X in Fleet." A follow up question could be "If you were able to do X in Fleet, what's the next action you would take?" or "Why do you want to do X in Fleet?." 
 - Both of these questions provide helpful context on the underlying motivation behind the feature request when it is brought to the Roundup meeting. In addition, the community member receives a response and feels heard.
 
-#### New feature request issues
+**New feature request issues**
 
 After [requesting more details](#requesting-more-details), please add the milestone associated with the current time we are along the roadmap timeline. For example, if the current date is June 25, 2021, we would add the H1 2021 milestone to the issue.
 
 Feature request issues automatically include the "idea" label. The "idea" label provides the signal that this issue is an item the Fleet team would like to discuss at a later date. The time of discussion is indicated by the issue's milestones.
 
-#### Closing issues
+**Closing issues**
 
 It is often a good idea to let the original poster (OP) close their issue themselves, since they are usually well equipped to decide whether the issue is resolved.   In some cases, circling back with the OP can be impractical, and for the sake of speed issues might get closed.
 
