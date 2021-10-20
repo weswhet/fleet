@@ -129,6 +129,9 @@
       margin-left: 0;
       border-radius: 8px;
       padding: 12px;
+      background: url('/images/chevron-down-9x6@2x.png') no-repeat 95% 50%;
+      background-size: 9px 6px;
+      -webkit-appearance: none;
     }
   }
 
@@ -192,15 +195,22 @@
     border-bottom: 1px solid;
     border-color: #e2e4ea;
   }
-
+  .query-card {
+    padding-top: 24px;
+    padding-bottom: 24px;
+  }
   .card.results {
     box-shadow: none;
     border: none;
     border-radius: 8px;
-
     &:hover {
-      background-color: #f1f0ff;
-      cursor: pointer;
+      .query-card {
+        background-color: #f1f0ff;
+        box-shadow: none;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+      }
     }
   }
 
@@ -215,8 +225,8 @@
 
   .card-body {
     padding: 30px;
-    padding-top: 24px;
-    padding-bottom: 24px;
+    padding-top: 0px;
+    padding-bottom: 0px;
   }
 
   .avatar-frame {
