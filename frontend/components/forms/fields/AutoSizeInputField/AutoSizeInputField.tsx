@@ -25,7 +25,7 @@ const TeamsDropdown = ({
 }: IAutoSizeInputFieldProps): JSX.Element => {
   const [inputValue, setInputValue] = useState(value);
 
-  const inputClasses = classnames(baseClass, inputClassName, {
+  const inputClasses = classnames(baseClass, inputClassName, "no-hover", {
     [`${baseClass}--disabled`]: isDisabled,
     [`${baseClass}--error`]: hasError,
     [`${baseClass}__textarea`]: true,
@@ -46,10 +46,10 @@ const TeamsDropdown = ({
           name={name}
           id={name}
           onChange={onInputChange}
-          rows={1}
           placeholder={placeholder}
           value={inputValue}
           className={inputClasses}
+          rows={1}
         />
       </label>
     </div>
