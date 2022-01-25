@@ -1,0 +1,66 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+.component__auto-size-input-field {
+  box-sizing: border-box;
+
+  &::placeholder {
+    color: $ui-fleet-black-50;
+  }
+
+  &:focus {
+    outline: none;
+    border-color: $core-vibrant-blue;
+  }
+
+  .input-sizer {
+    display: inline-grid;
+    vertical-align: top;
+    align-items: center;
+    position: relative;
+    border: solid 1px;
+    padding: 0.25em 0.5em;
+    margin: 5px;
+
+    &::after,
+    input,
+    textarea {
+      width: auto;
+      min-width: 1em;
+      grid-area: 1 / 2;
+      font: inherit;
+      padding: 0.25em;
+      margin: 0;
+      resize: none;
+      background: none;
+      appearance: none;
+      border: none;
+    }
+
+    span {
+      padding: 0.25em;
+    }
+
+    &::after {
+      content: attr(data-value) " ";
+      visibility: hidden;
+      white-space: pre-wrap;
+    }
+
+    &:focus-within {
+      outline: solid 1px blue;
+
+      > span {
+        color: blue;
+      }
+
+      textarea:focus,
+      input:focus {
+        outline: none;
+      }
+    }
+  }
+}

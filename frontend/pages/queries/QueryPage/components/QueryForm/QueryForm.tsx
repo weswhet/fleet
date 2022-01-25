@@ -13,12 +13,15 @@ import { QueryContext } from "context/query";
 import { IQuery, IQueryFormData } from "interfaces/query";
 
 import Avatar from "components/Avatar";
-import FleetAce from "components/FleetAce"; // @ts-ignore
+import FleetAce from "components/FleetAce";
+// @ts-ignore
 import validateQuery from "components/forms/validators/validate_query";
 import Button from "components/buttons/Button";
 import Checkbox from "components/forms/fields/Checkbox";
-import Spinner from "components/Spinner"; // @ts-ignore
+import Spinner from "components/Spinner";
+// @ts-ignore
 import InputField from "components/forms/fields/InputField";
+import AutoSizeInputField from "components/forms/fields/AutoSizeInputField";
 import NewQueryModal from "../NewQueryModal";
 import PlatformCompatibility from "../PlatformCompatibility";
 import InfoIcon from "../../../../../../assets/images/icon-info-purple-14x14@2x.png";
@@ -237,24 +240,10 @@ const QueryForm = ({
     if (isEditMode) {
       if (isEditingName) {
         return (
-          <InputField
-            id="query-name"
-            type="textarea"
-            name="query-name"
-            error={errors.name}
-            value={lastEditedQueryName}
+          <AutoSizeInputField
             placeholder="Add name here"
-            inputClassName={`${baseClass}__query-name`}
-            onChange={setLastEditedQueryName}
-            inputOptions={{
-              autoFocus: true,
-              onFocus: (e: React.FocusEvent<HTMLInputElement>) => {
-                // sets cursor to end of inputfield
-                const val = e.target.value;
-                e.target.value = "";
-                e.target.value = val;
-              },
-            }}
+            value={lastEditedQueryName}
+            error={errors.name}
           />
         );
       }
@@ -305,12 +294,8 @@ const QueryForm = ({
         );
       }
 
-      /* eslint-disable */
-      // eslint complains about the button role
-      // applied to span - this is needed to avoid
-      // using a real button
-      // prettier-ignore
       return (
+        // eslint-disable-next-line jsx-a11y/interactive-supports-focus
         <span
           role="button"
           className={`${baseClass}__query-description`}
@@ -320,7 +305,6 @@ const QueryForm = ({
           <img alt="Edit description" src={PencilIcon} />
         </span>
       );
-      /* eslint-enable */
     }
 
     return null;
