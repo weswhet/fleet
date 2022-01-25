@@ -162,7 +162,10 @@ const QueryForm = ({
   ) => {
     evt.preventDefault();
 
+    console.log("promptSaveQuery");
+
     if (isEditMode && !lastEditedQueryName) {
+      console.log("set errors");
       return setErrors({
         ...errors,
         name: "Query name must be present",
@@ -241,12 +244,35 @@ const QueryForm = ({
       if (isEditingName) {
         return (
           <AutoSizeInputField
+            name="query-name"
             placeholder="Add name here"
             value={lastEditedQueryName}
-            error={errors.name}
+            hasError={errors && errors.name}
+            inputClassName={`${baseClass}__query-name`}
+            onChange={setLastEditedQueryName}
           />
         );
       }
+
+      // <InputField
+      //   id="query-name"
+      //   type="textarea"
+      //   name="query-name"
+      //   error={errors.name}
+      //   value={lastEditedQueryName}
+      //   placeholder="Add name here"
+      //   inputClassName={`${baseClass}__query-name`}
+      //   onChange={setLastEditedQueryName}
+      //   inputOptions={{
+      //     autoFocus: true,
+      //     onFocus: (e: React.FocusEvent<HTMLInputElement>) => {
+      //       // sets cursor to end of inputfield
+      //       const val = e.target.value;
+      //       e.target.value = "";
+      //       e.target.value = val;
+      //     },
+      //   }}
+      // />
 
       /* eslint-disable */
       // eslint complains about the button role
