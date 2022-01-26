@@ -17,11 +17,6 @@
     display: flex;
     justify-content: space-between;
 
-    .query-form__query-name,
-    .input-sizer::after {
-      font-size: $large;
-    }
-
     .form-field {
       margin-bottom: 0px;
     }
@@ -46,17 +41,53 @@
 
     .name-description {
       flex-grow: 1;
-      margin: $pad-large 24px 0 0;
-      .query-form__query-name {
-        line-height: 2rem;
+      margin: $pad-medium 24px 0 0;
+      .query-name-wrapper {
+        display: flex;
+        &:not(.query-form--editing) {
+          textarea:hover {
+            cursor: pointer;
+            color: $core-vibrant-blue;
+          }
+        }
+        .edit-icon {
+          position: relative;
+          left: 3px;
+          top: 13px;
+        }
+        .query-form__query-name,
+        .input-sizer::after {
+          font-size: $large;
+        }
+        .component__auto-size-input-field {
+          letter-spacing: -0.5px;
+          line-height: 2.3rem;
+          padding-top: 2px;
+        }
       }
-      .query-form__query-description:not(textarea) {
-        margin: 0.25rem 0 1rem;
+      .query-description-wrapper {
+        display: flex;
+        padding-top: $pad-small;
+        &:not(.query-form--editing) {
+          textarea:hover {
+            cursor: pointer;
+            color: $core-vibrant-blue;
+          }
+        }
+        .edit-icon {
+          position: relative;
+          left: 3px;
+          top: 0;
+        }
       }
-      img {
-        transform: scale(0.5);
-        position: relative;
-        top: 6px;
+      .edit-icon {
+        width: 14px;
+        height: 14px;
+        opacity: 1;
+        transition: opacity 0.2s;
+        &.hide {
+          opacity: 0;
+        }
       }
     }
 

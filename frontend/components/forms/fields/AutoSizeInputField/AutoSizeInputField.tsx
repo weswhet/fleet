@@ -9,6 +9,8 @@ interface IAutoSizeInputFieldProps {
   inputClassName?: string;
   hasError?: boolean;
   isDisabled?: boolean;
+  onFocus: () => void;
+  onBlur: () => void;
   onChange: (newSelectedValue: string) => void;
 }
 
@@ -21,6 +23,8 @@ const TeamsDropdown = ({
   inputClassName,
   hasError,
   isDisabled,
+  onFocus,
+  onBlur,
   onChange,
 }: IAutoSizeInputFieldProps): JSX.Element => {
   const [inputValue, setInputValue] = useState(value);
@@ -39,6 +43,14 @@ const TeamsDropdown = ({
     setInputValue(event.currentTarget.value);
   };
 
+  const onInputFocus = () => {
+    onFocus();
+  };
+
+  const onInputBlur = () => {
+    onBlur();
+  };
+
   return (
     <div className={baseClass}>
       <label className="input-sizer" data-value={inputValue}>
@@ -49,7 +61,11 @@ const TeamsDropdown = ({
           placeholder={placeholder}
           value={inputValue}
           className={inputClasses}
+          cols={12}
           rows={1}
+          tabIndex={0}
+          onFocus={onInputFocus}
+          onBlur={onInputBlur}
         />
       </label>
     </div>
